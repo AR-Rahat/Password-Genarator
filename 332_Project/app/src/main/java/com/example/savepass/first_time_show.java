@@ -2,19 +2,13 @@ package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class first_time_show extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Intent in = new Intent(this,first_time_show.class);
-        startActivity(in);
-
-
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_first_time_show);
     }
 }
