@@ -3,15 +3,15 @@
     <group android:checkableBehavior="single"
         android:id="@+id/group1">
         <item android:id="@+id/nav_home"
-            android:icon="@drawable/ic_baseline_home_24"
+            android:icon="@drawable/pass_key"
             android:title="Password">
         </item>
         <item android:id="@+id/nav_drawer1"
-            android:icon="@drawable/ic_baseline_smartphone_24"
+            android:icon="@drawable/ic_baseline_notes_24"
             android:title="Secure Notes">
         </item>
         <item android:id="@+id/nav_drawer2"
-            android:icon="@drawable/ic_baseline_smartphone_24"
+            android:icon="@drawable/address"
             android:title="Address">
         </item>
         </group>
@@ -20,8 +20,8 @@
     <group android:checkableBehavior="single"
         android:id="@+id/group2">
         <item android:id="@+id/nav_Policy"
-            android:icon="@drawable/ic_baseline_policy_24"
-            android:title="Privacy Policy">
+            android:icon="@drawable/about_us"
+            android:title="About">
         </item>
         <item android:id="@+id/nav_share"
             android:icon="@drawable/ic_baseline_share_24"
