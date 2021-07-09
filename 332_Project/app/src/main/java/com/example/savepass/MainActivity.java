@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
-    private  static int sto=3000;
+    private  static int sto=200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

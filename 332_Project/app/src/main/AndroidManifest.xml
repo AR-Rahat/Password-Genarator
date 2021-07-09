@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SavePass">
-        <activity android:name=".add_items"></activity>
+        <activity android:name=".add_address"></activity>
+        <activity android:name=".add_notes" />
+        <activity android:name=".add_pass" />
+        <activity android:name=".add_items" />
         <activity android:name=".Homepage" />
         <activity android:name=".Setup_done" />
         <activity android:name=".singup_page" />
