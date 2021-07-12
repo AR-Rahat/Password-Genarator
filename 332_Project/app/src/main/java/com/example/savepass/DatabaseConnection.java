@@ -33,11 +33,21 @@ public class DatabaseConnection extends SQLiteOpenHelper {
     public static final String apre = "Present_Address";
     public static final String aper = "Permanent_Address";
 
-    private static final String create_login_table="create table "+ login_Table+ "(Email TEXT PRIMARY KEY NOT NULL, Master_Pass TEXT NOT NULL)";
+    private static final String create_login_table;
+
+    static {
+        create_login_table = "create table " + login_Table + "(Email TEXT PRIMARY KEY NOT NULL, Master_Pass TEXT NOT NULL)";
+    }
+
+    private static final String create_Pass_table;
+
+    static {
+        create_Pass_table = "CREATE TABLE " + Pass_Table + "(" + ptitle + " text not null," + purl + " text not null," + pusername + " text not null," + ppass + " text not null" + ")";
+    }
+
     //private static final String create_login_table="create table "+ login_Table+ "("+ lemail + " text primary key not null," + lpass + " text not null" + ")";
     //private static final String create_Pass_Table= "create table " + PILL_TABLE + "(" + KEY_ROWID + " text primary key not null," + KEY_PILLNAME + " text not null" + ")";
-
-    public DatabaseConnection(@Nullable Context context) {
+    DatabaseConnection(@Nullable Context context) {
         super(context, SafePass, null, DATABASE_VERSION);
         SQLiteDatabase db = this.getWritableDatabase();
     }
@@ -45,6 +55,7 @@ public class DatabaseConnection extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
     db.execSQL(create_login_table);
+    db.execSQL(create_Pass_table);
     }
 
     @Override
