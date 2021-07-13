@@ -19,6 +19,7 @@ public class login_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+
         l_done=(Button) findViewById(R.id.login_done);
         lmail=findViewById(R.id.editTextTextEmailAddress);
         lpass=findViewById(R.id.editTextTextPassword);
@@ -29,6 +30,8 @@ public class login_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent l=new Intent(login_page.this, Setup_done.class);
+                startActivity(l);
             }
         });
     }

@@ -91,6 +91,79 @@ public class DBconnection extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public boolean addpass(String t,String u,String n,String p){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(PTitle,t);
+        cv.put(PURL,u);
+        cv.put(PUSERNAME,n);
+        cv.put(PPASS,p);
+
+        //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
+
+        long inserted = db.insert(PASS_TABLE,null,cv);
+
+        if(inserted!=-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean addnote(String t,String n){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(NTITLE,t);
+        cv.put(NNOTES,n);
+
+
+        //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
+
+        long inserted = db.insert(NOTE_TABLE,null,cv);
+
+        if(inserted!=-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean addaddress(String t,String n,String m,String e,String add1,String add2){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(ATITLE,t);
+        cv.put(ANAME,n);
+        cv.put(AMOBILE,m);
+        cv.put(AEMAIL,e);
+        cv.put(AADD1,add1);
+        cv.put(AADD2,add2);
+
+
+
+
+        //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
+
+        long inserted = db.insert(ADDRESS_TABLE,null,cv);
+
+        if(inserted!=-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
     /*public boolean addData1(String e,String p){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
