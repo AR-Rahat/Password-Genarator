@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class login_page extends AppCompatActivity {
     Button l_done;
     EditText lmail,lpass;
-    DatabaseConnection db;
+    //DatabaseConnection db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,23 +23,12 @@ public class login_page extends AppCompatActivity {
         lmail=findViewById(R.id.editTextTextEmailAddress);
         lpass=findViewById(R.id.editTextTextPassword);
 
-        db=new DatabaseConnection(this);
+        //db=new DatabaseConnection(this);
 
         l_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail = lmail.getText().toString();
-                String pass = lpass.getText().toString();
-                Boolean cd = db.create_login(mail, pass);
-                if (cd == true)
-                {
-                    Toast.makeText(login_page.this,"New Entry Inserted",Toast.LENGTH_SHORT).show();
-                }
-                else
-                    Toast.makeText(login_page.this,"New Entry Not Inserted",Toast.LENGTH_SHORT).show();
 
-                Intent l=new Intent(login_page.this, Setup_done.class);
-                startActivity(l);
             }
         });
     }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseConnection sp;
+
     private  static int sto=200;
 
     @Override
@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
-        sp = new DatabaseConnection(this);
 
 
 

@@ -1,0 +1,111 @@
+package com.example.savepass;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+public class DBconnection extends SQLiteOpenHelper {
+    private static final String TAG = "DBcon";
+
+
+    /*
+    *Database Name-----------
+     */
+    private static final String DBNAME = "Safepass";
+
+
+    private static final String LOGIN_TABLE = "Login";
+    private static final String Email = "L_Email";
+    private static final String MPass = "L_password";
+
+
+    private static final String PASS_TABLE = "Password";
+    private static final String PTitle = "ptitle";
+    private static final String PURL = "purl";
+    private static final String PUSERNAME = "pusername";
+    private static final String PPASS = "ppass";
+
+    private static final String NOTE_TABLE = "Notes";
+    private static final String NTITLE = "ntitle";
+    private static final String NNOTES = "nnotes";
+
+    private static final String ADDRESS_TABLE = "Address";
+    private static final String ATITLE = "atitle";
+    private static final String ANAME = "aname";
+    private static final String AMOBILE = "amobile";
+    private static final String AEMAIL = "aemail";
+    private static final String AADD1 = "aadd1";
+    private static final String AADD2 = "aadd2";
+
+
+    public DBconnection(Context context) {
+        super(context, DBNAME, null,1);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String ct;
+        ct = "CREATE TABLE "+LOGIN_TABLE+" ("+Email+" text primary key not null,L_password text not null)";
+        db.execSQL(ct);
+        String ct1;
+        ct1 = "CREATE TABLE "+PASS_TABLE+" ("+PTitle+" text not null,purl text not null,pusername text not null,ppass text not null)";
+        db.execSQL(ct1);
+        String ct2;
+        ct2 = "CREATE TABLE "+NOTE_TABLE+" ("+NTITLE+" text not null,nnotes text not null)";
+        db.execSQL(ct2);
+
+        String ct3;
+        ct3 = "CREATE TABLE "+ADDRESS_TABLE+" ("+ATITLE+" text not null,aname text not null,amobile text not null,aemail text not null,aadd1 text not null,aadd2 text not null)";
+        db.execSQL(ct3);
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+LOGIN_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+PASS_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+NOTE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+ADDRESS_TABLE);
+
+        onCreate(db);
+    }
+
+    public boolean addData(String e,String p){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(Email,e);
+        cv.put(MPass,p);
+
+        Log.d(TAG,"Adding: "+e+" and "+p+" to"+LOGIN_TABLE);
+
+        long inserted = db.insert(LOGIN_TABLE,null,cv);
+
+        if(inserted!=-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    /*public boolean addData1(String e,String p){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL3,e);
+        cv.put(COL4,p);
+
+        Log.d(TAG,"Adding: "+e+" and "+p+" to"+TABLE_NAME1);
+
+        long inserted = db.insert(TABLE_NAME1,null,cv);
+
+        if(inserted!=-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }*/
+}
