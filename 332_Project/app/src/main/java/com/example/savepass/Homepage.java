@@ -41,6 +41,7 @@ public class Homepage extends AppCompatActivity {
     NavigationView navigationView;
     FloatingActionButton f_btn;
 
+
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,13 @@ public class Homepage extends AppCompatActivity {
                     startActivity(intent2);
                 }
                     break;
+
+                case R.id.nav_aboutus: {
+                    Intent intent3 = new Intent(Homepage.this, about_us.class);
+                    startActivity(intent3);
+                }
+                    break;
+
 
 //Paste your privacy policy link
 
