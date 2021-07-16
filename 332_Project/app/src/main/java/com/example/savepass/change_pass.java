@@ -18,6 +18,7 @@ public class change_pass extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(change_pass.this, login_page.class);
+                i.putExtra("id",2);
                 startActivity(i);
             }
         });

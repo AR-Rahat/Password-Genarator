@@ -66,6 +66,7 @@ public class singup_page extends AppCompatActivity {
         if (insertData) {
             toastMessage("Signup Successfull.");
             Intent l=new Intent(singup_page.this, login_page.class);
+            l.putExtra("id",1);
             startActivity(l);
         } else {
             toastMessage("Something went wrong");

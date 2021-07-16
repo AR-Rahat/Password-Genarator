@@ -234,6 +234,19 @@ public class DBconnection extends SQLiteOpenHelper {
         return data;
     }
 
+    public boolean isLog(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "Select * from Login";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        if(data.moveToFirst()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 
 

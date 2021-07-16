@@ -22,6 +22,7 @@ public class first_time_show extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent l=new Intent(first_time_show.this, login_page.class);
+                l.putExtra("id",2);
                 startActivity(l);
             }
         });

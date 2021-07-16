@@ -24,23 +24,10 @@ public class login_page extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
         db = new DBconnection(this);
 
-        l_done=(Button) findViewById(R.id.login_done);
-        lmail=findViewById(R.id.editTextTextEmailAddress);
-        lpass=findViewById(R.id.editTextTextPassword);
-        rem=findViewById(R.id.checkBox);
-        SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
-        String checkbox=preferences.getString("remember","");
-        /*if (checkbox.equals("true"))
-        {
+        l_done = findViewById(R.id.login_done);
+        lmail = findViewById(R.id.editTextTextEmailAddress);
+        lpass = findViewById(R.id.editTextTextPassword);
 
-        }
-        else if(checkbox.equals("false"))
-        {
-            Intent l=new Intent(login_page.this, Setup_done.class);
-            startActivity(l);
-        }*/
-
-        //db=new DatabaseConnection(this);
 
         l_done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +40,16 @@ public class login_page extends AppCompatActivity {
                 //toastMessage(in == true?"true":"false");
                 if(in){
                     toastMessage("Login Successful...");
-                    Intent l=new Intent(login_page.this, Setup_done.class);
-                    startActivity(l);
+                    Intent lo = getIntent();
+                    int ok = lo.getIntExtra("id",-1);
+                    if(ok==1){
+                        Intent l=new Intent(login_page.this, Setup_done.class);
+                        startActivity(l);
+                    }
+                    else{
+                        Intent l=new Intent(login_page.this, Homepage.class);
+                        startActivity(l);
+                    }
                 }
                 else{
                     toastMessage("Email or Password doesn't match");
@@ -62,27 +57,7 @@ public class login_page extends AppCompatActivity {
 
             }
         });
-        rem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked())
-                {
-                    SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
-                    SharedPreferences.Editor editor=preferences.edit();
-                    editor.putString("remember","true");
-                    editor.apply();
-                    Toast.makeText(login_page.this,"checked",Toast.LENGTH_SHORT).show();
-                }
-                else if(!buttonView.isChecked())
-                {
-                    SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
-                    SharedPreferences.Editor editor=preferences.edit();
-                    editor.putString("remember","false");
-                    editor.apply();
-                    Toast.makeText(login_page.this,"unchecked",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
     }
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();

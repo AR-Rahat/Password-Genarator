@@ -6,46 +6,37 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private  static int sto=200;
+    private DBconnection DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       //Intent in = new Intent(this,first_time_show.class);
-        // startActivity(in);
-
-
         setContentView(R.layout.activity_main);
-
-        SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
-        String checkbox=preferences.getString("remember","");
-        if (checkbox.equals("true"))
-        {
-            Intent homeIntent=new Intent(MainActivity.this, login_page.class);
-            startActivity(homeIntent);
-            finish();
-        }
-        else if(checkbox.equals("false"))
-        {
-            Intent homeIntent=new Intent(MainActivity.this, first_time_show.class);
-            startActivity(homeIntent);
-            finish();
-        }
-
-
-
+        DB = new DBconnection(this);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-            //Intent homeIntent=new Intent(MainActivity.this, first_time_show.class);
-            //startActivity(homeIntent);
-            finish();
+                Intent homeIntent;
+
+                if(DB.isLog()==true){
+                    homeIntent = new Intent(MainActivity.this, login_page.class);
+                    homeIntent.putExtra("id",2);
+                    startActivity(homeIntent);
+                }
+                else{
+                    homeIntent = new Intent(MainActivity.this, first_time_show.class);
+                    homeIntent.putExtra("id",1);
+                    startActivity(homeIntent);
+                }
             }
         },sto);
     }
+
 }
