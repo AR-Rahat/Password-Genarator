@@ -30,6 +30,34 @@
     </group>
 
 
+    <group> android:checkableBehavior="none"
+        android:id="@+id/group4">
+        <item
+            android:id="@+id/empty1"
+            android:checkable="false"
+            android:checked="false"
+            android:enabled="false"
+            android:title=""></item>
+        <item
+            android:id="@+id/empty2"
+            android:checkable="false"
+            android:checked="false"
+            android:enabled="false"
+            android:title=""></item>
+        <item
+            android:id="@+id/empty3"
+            android:checkable="false"
+            android:checked="false"
+            android:enabled="false"
+            android:title=""></item>
+        <item
+            android:id="@+id/empty4"
+            android:checkable="false"
+            android:checked="false"
+            android:enabled="false"
+            android:title=""></item>
+    </group>
+
     <group android:checkableBehavior="single"
         android:id="@+id/group3">
         <item android:id="@+id/nav_setting"
@@ -37,7 +65,4 @@
             android:title="Setting">
         </item>
     </group>
-
-
-
 </menu>
