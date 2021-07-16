@@ -76,6 +76,11 @@ public class Homepage extends AppCompatActivity {
                     startActivity(intent3);
                 }
                     break;
+                case R.id.nav_setting: {
+                    Intent intent3 = new Intent(Homepage.this, setting_page.class);
+                    startActivity(intent3);
+                }
+                break;
 
 
 //Paste your privacy policy link

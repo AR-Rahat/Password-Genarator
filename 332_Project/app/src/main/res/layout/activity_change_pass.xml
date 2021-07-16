@@ -22,7 +22,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/hint2"
+        android:hint="Old Master Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
 
         <EditText
             android:id="@+id/oldpass"
-            android:layout_width="235dp"
+            android:layout_width="250dp"
             android:layout_height="47dp"
             android:ems="10"
             android:inputType="textPassword" />
@@ -43,7 +43,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/hint"
+        android:hint="New Master Password"
         app:passwordToggleEnabled="true"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +55,7 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
-            android:layout_width="234dp"
+            android:layout_width="250dp"
             android:layout_height="48dp"
             android:ems="10"
             android:inputType="textPassword"
@@ -78,7 +78,7 @@
 
         <EditText
             android:id="@+id/editTextTextPassword3"
-            android:layout_width="235dp"
+            android:layout_width="250dp"
             android:layout_height="47dp"
             android:ems="10"
             android:inputType="textPassword"

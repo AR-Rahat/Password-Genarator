@@ -3,15 +3,19 @@ package com.example.savepass;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class login_page extends AppCompatActivity {
     Button l_done;
     EditText lmail,lpass;
+    CheckBox rem;
     DBconnection db;
 
     @Override
@@ -23,6 +27,18 @@ public class login_page extends AppCompatActivity {
         l_done=(Button) findViewById(R.id.login_done);
         lmail=findViewById(R.id.editTextTextEmailAddress);
         lpass=findViewById(R.id.editTextTextPassword);
+        rem=findViewById(R.id.checkBox);
+        SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+        String checkbox=preferences.getString("remember","");
+        /*if (checkbox.equals("true"))
+        {
+
+        }
+        else if(checkbox.equals("false"))
+        {
+            Intent l=new Intent(login_page.this, Setup_done.class);
+            startActivity(l);
+        }*/
 
         //db=new DatabaseConnection(this);
 
@@ -44,6 +60,27 @@ public class login_page extends AppCompatActivity {
                     toastMessage("Email or Password doesn't match");
                 }
 
+            }
+        });
+        rem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked())
+                {
+                    SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor=preferences.edit();
+                    editor.putString("remember","true");
+                    editor.apply();
+                    Toast.makeText(login_page.this,"checked",Toast.LENGTH_SHORT).show();
+                }
+                else if(!buttonView.isChecked())
+                {
+                    SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor=preferences.edit();
+                    editor.putString("remember","false");
+                    editor.apply();
+                    Toast.makeText(login_page.this,"unchecked",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
