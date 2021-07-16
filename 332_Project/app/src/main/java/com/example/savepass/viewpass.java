@@ -23,7 +23,7 @@ public class viewpass extends AppCompatActivity {
     private String pt;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpass);
         title = findViewById(R.id.item_title);
@@ -48,7 +48,9 @@ public class viewpass extends AppCompatActivity {
             title.setText(a.getTitle());
             disableEditText(title);
             url.setText(a.getUrl());
+            disableEditText(url);
             username.setText(a.getUsername());
+            disableEditText(url);
             pass.setText(a.getPass());
 
         }else {
