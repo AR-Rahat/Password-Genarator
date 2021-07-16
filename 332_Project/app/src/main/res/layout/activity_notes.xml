@@ -4,10 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".notes">
+    tools:context=".address">
 
+    <FrameLayout
+        android:id="@+id/l_note"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
     <TextView
-        android:id="@+id/add_address"
+        android:id="@+id/add_notes"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:background="#D11419"
@@ -19,10 +33,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/notes"
+        android:id="@+id/lv_note"
         android:layout_width="match_parent"
-        android:layout_height="667dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/add_address" />
-
+        android:layout_height="650dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="@id/l_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_notes" />
 </androidx.constraintlayout.widget.ConstraintLayout>

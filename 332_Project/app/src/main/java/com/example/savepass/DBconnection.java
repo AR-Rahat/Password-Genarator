@@ -2,9 +2,11 @@ package com.example.savepass;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -52,14 +54,14 @@ public class DBconnection extends SQLiteOpenHelper {
         ct = "CREATE TABLE "+LOGIN_TABLE+" ("+Email+" text primary key not null,L_password text not null)";
         db.execSQL(ct);
         String ct1;
-        ct1 = "CREATE TABLE "+PASS_TABLE+" ("+PTitle+" text not null,purl text not null,pusername text not null,ppass text not null)";
+        ct1 = "CREATE TABLE "+PASS_TABLE+" ("+PTitle+" text primary key not null,purl text not null,pusername text not null,ppass text not null)";
         db.execSQL(ct1);
         String ct2;
-        ct2 = "CREATE TABLE "+NOTE_TABLE+" ("+NTITLE+" text not null,nnotes text not null)";
+        ct2 = "CREATE TABLE "+NOTE_TABLE+" ("+NTITLE+" text primary key not null,nnotes text not null)";
         db.execSQL(ct2);
 
         String ct3;
-        ct3 = "CREATE TABLE "+ADDRESS_TABLE+" ("+ATITLE+" text not null,aname text not null,amobile text not null,aemail text not null,aadd1 text not null,aadd2 text not null)";
+        ct3 = "CREATE TABLE "+ADDRESS_TABLE+" ("+ATITLE+" text primary key not null,aname text not null,amobile text not null,aemail text not null,aadd1 text not null,aadd2 text not null)";
         db.execSQL(ct3);
 
     }
@@ -74,6 +76,10 @@ public class DBconnection extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+    /*
+        * This are the insert methods for our project-------------
+     */
     public boolean addData(String e,String p){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -83,7 +89,7 @@ public class DBconnection extends SQLiteOpenHelper {
         Log.d(TAG,"Adding: "+e+" and "+p+" to"+LOGIN_TABLE);
 
         long inserted = db.insert(LOGIN_TABLE,null,cv);
-
+        //db.close();
         if(inserted!=-1){
             return true;
         }
@@ -103,7 +109,7 @@ public class DBconnection extends SQLiteOpenHelper {
         //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
 
         long inserted = db.insert(PASS_TABLE,null,cv);
-
+        //db.close();
         if(inserted!=-1){
             return true;
         }
@@ -122,7 +128,7 @@ public class DBconnection extends SQLiteOpenHelper {
         //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
 
         long inserted = db.insert(NOTE_TABLE,null,cv);
-
+        //db.close();
         if(inserted!=-1){
             return true;
         }
@@ -141,12 +147,10 @@ public class DBconnection extends SQLiteOpenHelper {
         cv.put(AADD1,add1);
         cv.put(AADD2,add2);
 
-
-
-
         //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
 
         long inserted = db.insert(ADDRESS_TABLE,null,cv);
+        //db.close();
 
         if(inserted!=-1){
             return true;
@@ -156,29 +160,55 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
+    // *********************************************************==============================************************************************* //
 
+    /*
+     * This will be out select methods.
+     */
 
+    public boolean isLogin(String e,String p){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "Select * from Login";
+        Cursor data = db.rawQuery(query, null);
+        if(data.moveToFirst()){
+            do{
+                String em,pa;
+                em = data.getString(0);
+                pa = data.getString(1);
+                if(e.equals(em) && p.equals(pa)){
+                    return true;
+                }
 
-
-
-
-
-
-    /*public boolean addData1(String e,String p){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(COL3,e);
-        cv.put(COL4,p);
-
-        Log.d(TAG,"Adding: "+e+" and "+p+" to"+TABLE_NAME1);
-
-        long inserted = db.insert(TABLE_NAME1,null,cv);
-
-        if(inserted!=-1){
-            return true;
+            }while(data.moveToNext());
+            return false;
         }
         else{
             return false;
         }
-    }*/
+    }
+    public Cursor getDBPass(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + PASS_TABLE;
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getDBNote(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + NOTE_TABLE;
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getDBAdd(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + ADDRESS_TABLE;
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+
+
+
+
 }

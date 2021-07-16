@@ -12,13 +12,13 @@ import android.widget.Toast;
 public class login_page extends AppCompatActivity {
     Button l_done;
     EditText lmail,lpass;
-    //DatabaseConnection db;
+    DBconnection db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-
+        db = new DBconnection(this);
 
         l_done=(Button) findViewById(R.id.login_done);
         lmail=findViewById(R.id.editTextTextEmailAddress);
@@ -29,10 +29,25 @@ public class login_page extends AppCompatActivity {
         l_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String em,pa;
+                em = lmail.getText().toString();
+                pa =lpass.getText().toString();
+                //toastMessage(em + pa);
+                boolean in = db.isLogin(em,pa);
+                //toastMessage(in == true?"true":"false");
+                if(in){
+                    toastMessage("Login Successful...");
+                    Intent l=new Intent(login_page.this, Setup_done.class);
+                    startActivity(l);
+                }
+                else{
+                    toastMessage("Email or Password doesn't match");
+                }
 
-                Intent l=new Intent(login_page.this, Setup_done.class);
-                startActivity(l);
             }
         });
+    }
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
 }
