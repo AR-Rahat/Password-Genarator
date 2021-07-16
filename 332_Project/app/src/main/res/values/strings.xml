@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Safe Pass</string>
+    <string name="hint"><font size="2">New Master Password</font></string>
+    <string name="hint1"><font size="5">Confirm Master Password</font></string>
+    <string name="hint2"><font size="5">Old Master Password</font></string>
 
 </resources>
