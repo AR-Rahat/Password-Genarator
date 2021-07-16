@@ -217,6 +217,22 @@ public class DBconnection extends SQLiteOpenHelper {
         //db.close();
         return data;
     }
+    public Cursor getNote(String n){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + NOTE_TABLE +" Where ntitle = \"" + n + "\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getAdd(String n){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + ADDRESS_TABLE +" Where atitle = \""+n+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
 
 
 

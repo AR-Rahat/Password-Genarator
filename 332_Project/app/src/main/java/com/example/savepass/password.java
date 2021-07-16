@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class password extends AppCompatActivity {
 
-    private DBconnection DB;
+    DBconnection DB;
     private  ListView lv_pass1;
     private Cursor dt;
 
@@ -36,7 +36,10 @@ public class password extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString();
-                String title = name.substring(3);
+                String I = String.valueOf(i);
+                int L = I.length();
+                L+=2;
+                String title = name.substring(L);
 
                 Intent editScreenIntent = new Intent(password.this, viewpass.class);
                 editScreenIntent.putExtra("title",title);

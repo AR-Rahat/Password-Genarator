@@ -2,8 +2,11 @@ package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 
 public class address extends AppCompatActivity {
 
-    private DBconnection DB;
+    DBconnection DB;
     private ListView lv_add1;
     private Cursor dt;
 
@@ -28,6 +31,21 @@ public class address extends AppCompatActivity {
         if(dt.moveToFirst()){
             Fill(dt);
         }
+
+        lv_add1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getItemAtPosition(i).toString();
+                String I = String.valueOf(i);
+                int L = I.length();
+                L+=2;
+                String title = name.substring(L);
+
+                Intent editScreenIntent = new Intent(address.this, viewaddress.class);
+                editScreenIntent.putExtra("title",title);
+                startActivity(editScreenIntent);
+            }
+        });
 
     }
     public void Fill(Cursor dtb){
