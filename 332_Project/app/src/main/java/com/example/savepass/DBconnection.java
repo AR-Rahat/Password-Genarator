@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
+//import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+//import androidx.annotation.Nullable;
 
 public class DBconnection extends SQLiteOpenHelper {
     private static final String TAG = "DBcon";
@@ -168,14 +168,15 @@ public class DBconnection extends SQLiteOpenHelper {
 
     public boolean isLogin(String e,String p){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "Select * from Login";
+        String query = "Select * from Login Where L_Email = \""+e+"\"";
         Cursor data = db.rawQuery(query, null);
         if(data.moveToFirst()){
             do{
                 String em,pa;
-                em = data.getString(0);
+                //em = data.getString(0);
                 pa = data.getString(1);
-                if(e.equals(em) && p.equals(pa)){
+                //e.equals(em) &&
+                if(p.equals(pa)){
                     return true;
                 }
 
@@ -203,6 +204,15 @@ public class DBconnection extends SQLiteOpenHelper {
     public Cursor getDBAdd(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + ADDRESS_TABLE;
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+
+    public Cursor getPass(String n){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + PASS_TABLE +" Where ptitle = \""+n+"\"";
         Cursor data = db.rawQuery(query, null);
         //db.close();
         return data;

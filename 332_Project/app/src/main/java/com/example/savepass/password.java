@@ -2,8 +2,11 @@ package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -28,6 +31,18 @@ public class password extends AppCompatActivity {
         if(dt.moveToFirst()){
             Fill(dt);
         }
+
+        lv_pass1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getItemAtPosition(i).toString();
+                String title = name.substring(3);
+
+                Intent editScreenIntent = new Intent(password.this, viewpass.class);
+                editScreenIntent.putExtra("title",title);
+                startActivity(editScreenIntent);
+            }
+        });
 
     }
     public void Fill(Cursor dtb){
