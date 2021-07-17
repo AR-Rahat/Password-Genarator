@@ -12,6 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class address extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class address extends AppCompatActivity {
     DBconnection DB;
     private ListView lv_add1;
     private Cursor dt;
+    FloatingActionButton f_btn3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,16 @@ public class address extends AppCompatActivity {
                 Intent editScreenIntent = new Intent(address.this, viewaddress.class);
                 editScreenIntent.putExtra("title",title);
                 startActivity(editScreenIntent);
+            }
+        });
+
+        f_btn3=(FloatingActionButton) findViewById(R.id.fab3);
+
+        f_btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent l=new Intent(address.this, add_address.class);
+                startActivity(l);
             }
         });
 

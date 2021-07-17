@@ -36,29 +36,29 @@
         android:id="@+id/security"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:clickable="false"
+        android:drawableLeft="@drawable/security"
+        android:gravity="left"
         android:text=" Security"
         android:textSize="16dp"
-        android:gravity="left"
-        android:backgroundTint="@color/transparent"
-        android:drawableLeft="@drawable/security"
-        app:layout_constraintEnd_toEndOf="@id/your_account"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/your_account"
         app:layout_constraintTop_toBottomOf="@+id/your_account"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/privacy_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:clickable="false"
+        android:drawableLeft="@drawable/privacy"
+        android:gravity="left"
         android:text=" Privacy Policy"
         android:textSize="16dp"
-        android:gravity="left"
-        android:backgroundTint="@color/transparent"
-        android:drawableLeft="@drawable/privacy"
         app:layout_constraintEnd_toEndOf="@id/security"
-        app:layout_constraintTop_toBottomOf="@+id/security"
-        tools:layout_editor_absoluteX="110dp" />
+        app:layout_constraintTop_toBottomOf="@+id/security" />
 
     <Button
         android:id="@+id/logout"

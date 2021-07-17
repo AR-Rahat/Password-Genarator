@@ -12,6 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class password extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class password extends AppCompatActivity {
     DBconnection DB;
     private  ListView lv_pass1;
     private Cursor dt;
+    FloatingActionButton f_btn1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,16 @@ public class password extends AppCompatActivity {
             }
         });
 
+        f_btn1=(FloatingActionButton) findViewById(R.id.fab1);
+
+        f_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent l=new Intent(password.this, add_pass.class);
+                startActivity(l);
+            }
+        });
+
     }
     public void Fill(Cursor dtb){
 
@@ -71,4 +84,5 @@ public class password extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
+
 }

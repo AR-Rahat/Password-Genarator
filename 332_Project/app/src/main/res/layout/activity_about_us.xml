@@ -46,8 +46,8 @@
         android:layout_marginBottom="8dp"
         android:background="@null"
         android:gravity="center"
-        android:text="© Copyright by Md Asfakur Rahat  (18192103015),
-        \nNazmur Raihan  (18192103038),\nFahad Bin Mohammad Hossain  (18192103040)."
+        android:text="© Copyright by Md Asfakur Rahat,
+        \nNazmur Raihan,\nFahad Bin Mohammad Hossain ."
         android:textAlignment="center"
         android:textSize="14dp"
         android:textStyle="bold"
