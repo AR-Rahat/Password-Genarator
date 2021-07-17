@@ -99,6 +99,7 @@
         android:background="#D11419"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:text="Edit"
+        android:gravity="center"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView7"

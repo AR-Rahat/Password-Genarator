@@ -52,7 +52,7 @@
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="62dp"
-        android:background="#E03237"
+        android:background="#D11419"
         android:text="\n  Add Item"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
