@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="62dp"
         android:background="#D11419"
+        style="?android:attr/borderlessButtonStyle"
         android:drawableLeft="@android:drawable/ic_menu_save"
         android:gravity="center"
         android:text="Save"

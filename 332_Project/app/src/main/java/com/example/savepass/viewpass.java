@@ -15,11 +15,13 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class viewpass extends AppCompatActivity {
 
     DBconnection DB;
     private EditText title,url,username,pass;
-    private Button edit;
+    private Button edit,save;
     private String pt;
 
     @Override
@@ -31,6 +33,23 @@ public class viewpass extends AppCompatActivity {
         username = findViewById(R.id.editTextTextPersonName5);
         pass = findViewById(R.id.editTextTextPassword);
         edit = findViewById(R.id.button4);
+        save= findViewById(R.id.save);
+        save.setVisibility(View.INVISIBLE);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit.setVisibility(View.INVISIBLE);
+                save.setVisibility(View.VISIBLE);
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save.setVisibility(View.INVISIBLE);
+                edit.setVisibility(View.VISIBLE);
+            }
+        });
+
         DB = new DBconnection(this);
 
         Intent Ri = getIntent();
@@ -49,6 +68,8 @@ public class viewpass extends AppCompatActivity {
             disableEditText(title);
             url.setText(a.getUrl());
             disableEditText(url);
+            disableEditText(username);
+            disableEditText(pass);
             username.setText(a.getUsername());
             disableEditText(url);
             pass.setText(a.getPass());
