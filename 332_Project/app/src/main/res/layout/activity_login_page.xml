@@ -35,15 +35,16 @@
         app:layout_constraintVertical_bias="0.39" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Master Password"
-        app:passwordToggleEnabled="true"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/editTextTextPassword"
@@ -52,6 +53,20 @@
             android:ems="10"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/newaccount"
+        android:layout_width="295dp"
+        android:layout_height="27dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="Don't have an account? Create new account!"
+        android:textColor="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_done"
+        app:layout_constraintVertical_bias="0.101" />
 
     <!--<CheckBox
         android:id="@+id/checkBox"

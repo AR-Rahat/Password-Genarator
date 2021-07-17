@@ -26,13 +26,17 @@ public class setting_page extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+                /*SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
                 SharedPreferences.Editor editor=preferences.edit();
                 editor.putString("remember","false");
-                editor.apply();
-                Intent l=new Intent(setting_page.this, first_time_show.class);
+                editor.apply();*/
+                Intent l=new Intent(setting_page.this, login_page.class);
+                l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                l.putExtra("id", 2);
                 startActivity(l);
-                finish();
+                //finish();
             }
         });
 

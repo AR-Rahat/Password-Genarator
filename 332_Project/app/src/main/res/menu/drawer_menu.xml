@@ -30,7 +30,7 @@
     </group>
 
 
-    <group> android:checkableBehavior="none"
+    <!--<group> android:checkableBehavior="none"
         android:id="@+id/group4">
         <item
             android:id="@+id/empty1"
@@ -56,7 +56,7 @@
             android:checked="false"
             android:enabled="false"
             android:title=""></item>
-    </group>
+    </group>-->
 
     <group android:checkableBehavior="single"
         android:id="@+id/group3">

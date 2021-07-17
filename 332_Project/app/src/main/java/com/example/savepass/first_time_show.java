@@ -22,6 +22,9 @@ public class first_time_show extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent l=new Intent(first_time_show.this, login_page.class);
+                l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 l.putExtra("id",2);
                 startActivity(l);
             }
@@ -30,6 +33,9 @@ public class first_time_show extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent s=new Intent(first_time_show.this, singup_page.class);
+                s.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(s);
             }
         });

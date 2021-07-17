@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class login_page extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class login_page extends AppCompatActivity {
     EditText lmail,lpass;
     CheckBox rem;
     DBconnection db;
+    TextView na;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,19 @@ public class login_page extends AppCompatActivity {
         l_done = findViewById(R.id.login_done);
         lmail = findViewById(R.id.editTextTextEmailAddress);
         lpass = findViewById(R.id.editTextTextPassword);
+        na= findViewById(R.id.newaccount);
+
+        na.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(login_page.this, singup_page.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(in);
+                finish();
+            }
+        });
 
 
         l_done.setOnClickListener(new View.OnClickListener() {
@@ -44,10 +59,16 @@ public class login_page extends AppCompatActivity {
                     int ok = lo.getIntExtra("id",-1);
                     if(ok==1){
                         Intent l=new Intent(login_page.this, Setup_done.class);
+                        l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(l);
                     }
                     else{
                         Intent l=new Intent(login_page.this, Homepage.class);
+                        l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(l);
                     }
                 }
