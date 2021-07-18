@@ -3,6 +3,7 @@ package com.example.savepass;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,8 @@ public class singup_page extends AppCompatActivity {
     DBconnection DB;
     private Button s_done;
     private EditText smail,spass,scpass;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -28,11 +31,15 @@ public class singup_page extends AppCompatActivity {
         spass = (EditText) findViewById(R.id.editTextTextPersonName2);
         scpass = (EditText) findViewById(R.id.editTextTextPassword3);
 
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
         DB = new DBconnection(this);
 
         s_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                signup();
 
                 String Smail,Spass,Scpass;
                 Smail = smail.getText().toString();
@@ -59,6 +66,16 @@ public class singup_page extends AppCompatActivity {
             }
         });
     }
+
+    private void signup()
+    {
+        String username=smail.getText().toString();
+        if(username!=""){
+            editor.putBoolean("saveusername",true);
+            editor.putString("username",username);
+            editor.commit();}
+    }
+
 
     public void AddData(String e,String p) {
         boolean insertData = DB.addData(e,p);

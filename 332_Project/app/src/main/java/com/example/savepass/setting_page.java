@@ -10,12 +10,19 @@ import android.widget.Button;
 
 public class setting_page extends AppCompatActivity {
     Button cp,log;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_page);
         cp=(Button) findViewById(R.id.your_account);
         log=(Button) findViewById(R.id.logout);
+
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+
         cp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,6 +33,7 @@ public class setting_page extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 /*SharedPreferences preferences=getSharedPreferences("checkbox",MODE_PRIVATE);
                 SharedPreferences.Editor editor=preferences.edit();
                 editor.putString("remember","false");
@@ -35,10 +43,17 @@ public class setting_page extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 l.putExtra("id", 2);
+                logout();
                 startActivity(l);
                 //finish();
             }
         });
 
+    }
+    private void logout()
+    {
+            editor.putBoolean("saveusername",false);
+            editor.clear();
+            editor.commit();
     }
 }

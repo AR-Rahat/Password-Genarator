@@ -16,9 +16,12 @@ import android.widget.Toast;
 public class login_page extends AppCompatActivity {
     Button l_done;
     EditText lmail,lpass;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     CheckBox rem;
     DBconnection db;
     TextView na;
+    Boolean savelogininfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,15 @@ public class login_page extends AppCompatActivity {
         l_done = findViewById(R.id.login_done);
         lmail = findViewById(R.id.editTextTextEmailAddress);
         lpass = findViewById(R.id.editTextTextPassword);
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         na= findViewById(R.id.newaccount);
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            lmail.setText(sharedPreferences.getString("username",null));
+        }
 
         na.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +58,7 @@ public class login_page extends AppCompatActivity {
         l_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                login();
                 String em,pa;
                 em = lmail.getText().toString();
                 pa =lpass.getText().toString();
@@ -79,6 +91,15 @@ public class login_page extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void login()
+    {
+        String username=lmail.getText().toString();
+        if(username!=""){
+            editor.putBoolean("saveusername",true);
+        editor.putString("username",username);
+        editor.commit();}
     }
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
