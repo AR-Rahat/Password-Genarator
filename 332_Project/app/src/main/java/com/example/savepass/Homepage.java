@@ -72,7 +72,7 @@ public class Homepage extends AppCompatActivity {
                     break;
 
                 case R.id.nav_aboutus: {
-                    Intent intent3 = new Intent(Homepage.this, about_us.class);
+                    Intent intent3 = new Intent(Homepage.this, Homepage_Version2.class);
                     startActivity(intent3);
                 }
                     break;

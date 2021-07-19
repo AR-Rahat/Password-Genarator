@@ -13,4 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/red</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.SavePass.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">#D11515</item>
+    </style>
+
+    <style name="Theme.SavePass.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SavePass.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>
