@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,12 +22,16 @@ public class notes extends AppCompatActivity {
     DBconnection DB;
     private ListView lv_note1;
     private Cursor dt;
+    private Toolbar toolbar;
     FloatingActionButton f_btn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+
+        Toolbar toolbar= findViewById(R.id.notes_bar);
+        setSupportActionBar(toolbar);
         lv_note1 = findViewById(R.id.lv_note);
         DB = new DBconnection(this);
 

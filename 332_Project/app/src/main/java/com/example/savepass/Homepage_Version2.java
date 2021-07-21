@@ -1,9 +1,13 @@
 package com.example.savepass;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,6 +24,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.savepass.databinding.ActivityHomepageVersion2Binding;
 
 public class Homepage_Version2 extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
     private DrawerLayout drawerLayout;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomepageVersion2Binding binding;
@@ -28,8 +35,13 @@ public class Homepage_Version2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+
         binding = ActivityHomepageVersion2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         Toolbar toolbar= findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
@@ -38,21 +50,38 @@ public class Homepage_Version2 extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+
         //setSupportActionBar(binding.appBarHomepageVersion2.toolbar2);
-        binding.appBarHomepageVersion2.fab.setOnClickListener(new View.OnClickListener() {
+        binding.appBarHomepageVersion2.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent l=new Intent(Homepage_Version2.this, add_items.class);
+                startActivity(l);
+
+
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
         //DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
+        View headerView=navigationView.getHeaderView(0);
+        TextView navusername=(TextView) headerView.findViewById(R.id.header_username);
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            navusername.setText(sharedPreferences.getString("username",null));
+        }
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                //.setDrawerLayout(drawer)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_pass2,R.id.nav_notes2,R.id.nav_address2,R.id.nav_aboutus2,R.id.nav_share2,R.id.nav_setting2)
+                .setDrawerLayout(drawerLayout)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_homepage_version2);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);

@@ -6,40 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".viewaddress">
 
-    <TextView
-        android:id="@+id/textView7"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/viewaddress_bar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#D11419"
-        android:text="\n  View Address"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="View Address"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="#D11419"
         style="?android:attr/borderlessButtonStyle"
+        android:layout_width="89dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11419"
         android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:text="Edit"
         android:gravity="center"
+        android:text="Edit"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintVertical_bias="0.0" />
+    <Button
+        android:id="@+id/save"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="89dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11419"
+        android:drawableLeft="@android:drawable/ic_menu_save"
+        android:gravity="center"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
@@ -49,8 +64,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintTop_toBottomOf="@id/viewaddress_bar"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/address_name"
         android:layout_width="match_parent"
@@ -133,18 +149,16 @@
 
     <ImageButton
         android:id="@+id/imageButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="28dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="2dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
         android:background="#D11419"
         android:onClick="showPopup"
-        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.989"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.002"
+        app:layout_constraintTop_toTopOf="@id/viewaddress_bar"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/threedot" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class add_address extends AppCompatActivity {
+    private Toolbar toolbar;
 
     private static final String TAG = "add_address";
 
@@ -21,7 +23,10 @@ public class add_address extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_address);
 
-        save=(Button) findViewById(R.id.button4);
+        Toolbar toolbar= findViewById(R.id.add_address_bar);
+        setSupportActionBar(toolbar);
+
+        save=(Button) findViewById(R.id.save_address1);
         title = (EditText) findViewById(R.id.item_title);
         name=(EditText) findViewById(R.id.address_name);
         mobile=(EditText) findViewById(R.id.address_phone);

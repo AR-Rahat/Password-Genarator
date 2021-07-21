@@ -7,27 +7,22 @@
     tools:context=".address">
 
 
-    <TextView
-        android:id="@+id/add_notes"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/notes_bar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#D11419"
-        android:text="\n  Secure Notes"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Notes"
+        tools:ignore="MissingConstraints" />
 
     <ListView
         android:id="@+id/lv_note"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_notes" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
 

@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,20 +13,50 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-public class viewnotes extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
 
+public class viewnotes extends AppCompatActivity {
+    private Toolbar toolbar;
     DBconnection DB;
     private EditText title,note;
-    private Button edit;
+    private Button edit,save;
     private String nt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewnotes);
+
+        Toolbar toolbar= findViewById(R.id.viewnotes_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
         title = findViewById(R.id.item_name);
         note = findViewById(R.id.add_note);
         edit = findViewById(R.id.button4);
+        save=findViewById(R.id.save);
+
+        save.setVisibility(View.INVISIBLE);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit.setVisibility(View.INVISIBLE);
+                save.setVisibility(View.VISIBLE);
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save.setVisibility(View.INVISIBLE);
+                edit.setVisibility(View.VISIBLE);
+            }
+        });
+
+
         DB = new DBconnection(this);
 
         Intent Ri = getIntent();

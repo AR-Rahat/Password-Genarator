@@ -27,11 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
                 if(DB.isLog()==true){
                     homeIntent = new Intent(MainActivity.this, login_page.class);
+                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
                     homeIntent.putExtra("id",2);
                     startActivity(homeIntent);
                 }
                 else{
                     homeIntent = new Intent(MainActivity.this, first_time_show.class);
+                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
                     homeIntent.putExtra("id",1);
                     startActivity(homeIntent);
                 }

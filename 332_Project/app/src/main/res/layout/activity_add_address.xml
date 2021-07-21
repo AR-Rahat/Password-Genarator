@@ -6,31 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".add_address">
 
-    <TextView
-        android:id="@+id/add_address"
+    <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_address_bar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#D11419"
-        android:text="\n  Add Address"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Add Addresses"
+        tools:ignore="MissingConstraints" />-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_address_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:textAlignment="center"
+        app:title="Add Addresses"
+        tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="62dp"
-        android:background="#D11419"
+        android:id="@+id/save_address1"
         style="?android:attr/borderlessButtonStyle"
+        android:layout_width="89dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11419"
         android:drawableLeft="@android:drawable/ic_menu_save"
         android:gravity="center"
         android:text="Save"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_address"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintEnd_toEndOf="@+id/add_address_bar"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -39,6 +48,7 @@
         android:id="@+id/item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
@@ -48,8 +58,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_address"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintTop_toBottomOf="@id/add_address_bar"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/address_name"
         android:layout_width="match_parent"

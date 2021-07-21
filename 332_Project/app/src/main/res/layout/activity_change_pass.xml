@@ -6,17 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".change_pass">
 
-    <TextView
-        android:id="@+id/textView7"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/changepass_bar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#D11419"
-        android:text="\n  Change Password"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Change Password"
+        tools:ignore="MissingConstraints" />
 
 
     <com.google.android.material.textfield.TextInputLayout

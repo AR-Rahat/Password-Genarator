@@ -6,31 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".add_notes">
 
-    <TextView
-        android:id="@+id/addnote"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addnote_bar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#D11419"
-        android:text="\n  Add Secure notes"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Add Secure Notes"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="62dp"
-        android:background="#D11419"
         style="?android:attr/borderlessButtonStyle"
+        android:layout_width="89dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
         android:drawableLeft="@android:drawable/ic_menu_save"
         android:gravity="center"
         android:text="Save"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/addnote"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintEnd_toEndOf="@+id/addnote_bar"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -39,6 +38,7 @@
         android:id="@+id/item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
@@ -48,12 +48,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addnote"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintTop_toTopOf="@+id/addnote_bar"
+        app:layout_constraintVertical_bias="0.077" />
+
     <EditText
         android:id="@+id/add_note"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Note"
         android:inputType="textMultiLine"
@@ -64,6 +65,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_name"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.078" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +12,8 @@ import android.widget.Toast;
 
 public class add_pass extends AppCompatActivity {
 
-    private static final String TAG = "add_pass";
-
+//    private static final String TAG = "add_pass";
+private Toolbar toolbar;
     DBconnection DB;
     private EditText title,url,username,pass;
     private Button save;
@@ -21,7 +22,11 @@ public class add_pass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pass);
-        save=(Button) findViewById(R.id.button4);
+
+        toolbar=(Toolbar) findViewById(R.id.addpass_bar);
+        setSupportActionBar(toolbar);
+
+        save=(Button) findViewById(R.id.save_pass1);
         title = (EditText) findViewById(R.id.item_name);
         url = (EditText) findViewById(R.id.pass_url);
         username = (EditText) findViewById(R.id.editTextTextPersonName5);

@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,10 +14,10 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 public class viewaddress extends AppCompatActivity {
-
+private Toolbar toolbar;
     DBconnection DB;
     private EditText title,name,mobile,email,add1,add2;
-    private Button edit;
+    private Button edit,save;
     private String at;
 
 
@@ -25,6 +26,12 @@ public class viewaddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewaddress);
 
+        Toolbar toolbar= findViewById(R.id.viewaddress_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         title = findViewById(R.id.item_title);
         name = findViewById(R.id.address_name);
         mobile = findViewById(R.id.address_phone);
@@ -32,6 +39,24 @@ public class viewaddress extends AppCompatActivity {
         add1 = findViewById(R.id.address_preaddress);
         add2 = findViewById(R.id.address_peraddress);
         edit = findViewById(R.id.button4);
+        save=findViewById(R.id.save);
+
+        save.setVisibility(View.INVISIBLE);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit.setVisibility(View.INVISIBLE);
+                save.setVisibility(View.VISIBLE);
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save.setVisibility(View.INVISIBLE);
+                edit.setVisibility(View.VISIBLE);
+            }
+        });
+
         DB = new DBconnection(this);
 
         Intent Ri = getIntent();

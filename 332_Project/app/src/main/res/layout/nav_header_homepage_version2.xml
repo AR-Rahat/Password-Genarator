@@ -21,9 +21,9 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
+        android:id="@+id/header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/header_username"
         android:paddingTop="10dp"
         android:text="Username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

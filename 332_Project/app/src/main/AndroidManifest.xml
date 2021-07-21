@@ -14,11 +14,16 @@
             android:name=".Homepage_Version2"
             android:label="@string/title_activity_homepage_version2"
             android:theme="@style/Theme.SavePass.NoActionBar" />
-        <activity android:name=".change_pass" />
-        <activity android:name=".setting_page" />
-        <activity android:name=".viewaddress" />
-        <activity android:name=".viewnotes" />
-        <activity android:name=".viewpass" />
+        <activity android:name=".change_pass"
+            android:parentActivityName=".setting_page"/>
+        <activity android:name=".setting_page"
+            android:parentActivityName=".Homepage_Version2"/>
+        <activity android:name=".viewaddress"
+            android:parentActivityName=".Homepage_Version2"/>
+        <activity android:name=".viewnotes"
+            android:parentActivityName=".Homepage_Version2" />
+        <activity android:name=".viewpass"
+            android:parentActivityName=".Homepage_Version2"/>
         <activity android:name=".about_us" />
         <activity android:name=".address" />
         <activity android:name=".notes" />
@@ -30,7 +35,8 @@
         <activity android:name=".Homepage" />
         <activity android:name=".Setup_done" />
         <activity android:name=".singup_page" />
-        <activity android:name=".login_page" />
+        <activity android:name=".login_page"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".first_time_show" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +10,15 @@ import android.widget.Button;
 
 public class add_items extends AppCompatActivity {
     Button p_btn,n_btn,a_btn;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
+
+        toolbar= findViewById(R.id.additem_bar);
+        setSupportActionBar(toolbar);
 
         p_btn=(Button) findViewById(R.id.button);
         n_btn=(Button) findViewById(R.id.button2);

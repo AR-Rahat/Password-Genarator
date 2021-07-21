@@ -1,39 +1,46 @@
 package com.example.savepass;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class address extends AppCompatActivity {
-private Toolbar toolbar;
+public class Address_new extends Fragment {
     DBconnection DB;
     private ListView lv_add1;
+    private android.widget.Toolbar toolbar;
     private Cursor dt;
-    FloatingActionButton f_btn3;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_address_new,container,false);
+        return view;
+    }
 
-        Toolbar toolbar= findViewById(R.id.address_bar);
-        setSupportActionBar(toolbar);
-
-        lv_add1 = findViewById(R.id.lv_add);
-        DB = new DBconnection(this);
+    @Override
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        lv_add1 =(ListView) view.findViewById(R.id.lv_add);
+        DB = new DBconnection(getActivity());
 
         Cursor dt = DB.getDBAdd();
         if(dt.moveToFirst()){
@@ -49,23 +56,13 @@ private Toolbar toolbar;
                 L+=2;
                 String title = name.substring(L);
 
-                Intent editScreenIntent = new Intent(address.this, viewaddress.class);
+                Intent editScreenIntent = new Intent(getActivity(), viewaddress.class);
                 editScreenIntent.putExtra("title",title);
                 startActivity(editScreenIntent);
             }
         });
-
-        f_btn3=(FloatingActionButton) findViewById(R.id.fab3);
-
-        f_btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent l=new Intent(address.this, add_address.class);
-                startActivity(l);
-            }
-        });
-
     }
+
     public void Fill(Cursor dtb){
 
         ArrayList<String> listData = new ArrayList<>();
@@ -81,12 +78,8 @@ private Toolbar toolbar;
             i++;
         }while(dtb.moveToNext());
         //create the list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,listData);
         lv_add1.setAdapter(adapter);
         dtb.close();
-    }
-
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
 }

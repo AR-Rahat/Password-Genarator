@@ -2,6 +2,7 @@ package com.example.savepass;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,7 +19,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class viewpass extends AppCompatActivity {
-
+    private Toolbar toolbar;
     DBconnection DB;
     private EditText title,url,username,pass;
     private Button edit,save;
@@ -28,6 +29,13 @@ public class viewpass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpass);
+
+        Toolbar toolbar= findViewById(R.id.viewpass_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         title = findViewById(R.id.item_title);
         url = findViewById(R.id.pass_url);
         username = findViewById(R.id.editTextTextPersonName5);

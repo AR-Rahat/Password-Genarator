@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class add_notes extends AppCompatActivity {
-
+private Toolbar toolbar;
     private static final String TAG = "add_notes";
 
     DBconnection DB;
@@ -20,6 +21,9 @@ public class add_notes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_notes);
+
+        Toolbar toolbar= findViewById(R.id.addnote_bar);
+        setSupportActionBar(toolbar);
 
         save=(Button) findViewById(R.id.button4);
         title = (EditText) findViewById(R.id.item_name);

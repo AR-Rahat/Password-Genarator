@@ -77,7 +77,7 @@ public class login_page extends AppCompatActivity {
                         startActivity(l);
                     }
                     else{
-                        Intent l=new Intent(login_page.this, Homepage.class);
+                        Intent l=new Intent(login_page.this, Homepage_Version2.class);
                         l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);

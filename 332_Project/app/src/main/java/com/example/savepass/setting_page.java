@@ -1,6 +1,7 @@
 package com.example.savepass;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 public class setting_page extends AppCompatActivity {
     Button cp,log;
+    private Toolbar toolbar;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     @Override
@@ -17,6 +19,13 @@ public class setting_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_page);
         cp=(Button) findViewById(R.id.your_account);
+
+        Toolbar toolbar= findViewById(R.id.settings_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         log=(Button) findViewById(R.id.logout);
 
         sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);

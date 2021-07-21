@@ -6,37 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".setting_page">
 
-    <TextView
-        android:id="@+id/textView7"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settings_bar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#D11419"
-        android:text="\n   Settings"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#D11515"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Settings"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/your_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="576dp"
+        android:backgroundTint="@color/transparent"
+        style="?android:attr/borderlessButtonStyle"
+        android:drawableLeft="@drawable/changepass"
+        android:gravity="left"
         android:text=" Change Password"
         android:textSize="16dp"
-        android:gravity="left"
-        android:backgroundTint="@color/transparent"
-        android:drawableLeft="@drawable/changepass"
+        android:layout_marginTop="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-36dp" />
+        app:layout_constraintEnd_toEndOf="@+id/settings_bar"
+        app:layout_constraintTop_toBottomOf="@+id/settings_bar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/security"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/transparent"
+        style="?android:attr/borderlessButtonStyle"
         android:clickable="false"
         android:drawableLeft="@drawable/security"
         android:gravity="left"
@@ -53,6 +56,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/transparent"
         android:clickable="false"
+        style="?android:attr/borderlessButtonStyle"
         android:drawableLeft="@drawable/privacy"
         android:gravity="left"
         android:text=" Privacy Policy"
@@ -67,6 +71,7 @@
         android:text=" Logout"
         android:textSize="16dp"
         android:gravity="left"
+        style="?android:attr/borderlessButtonStyle"
         android:backgroundTint="@color/transparent"
         android:drawableLeft="@drawable/exit"
         app:layout_constraintEnd_toEndOf="@id/privacy_policy"

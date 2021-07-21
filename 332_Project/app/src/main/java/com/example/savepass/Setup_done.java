@@ -20,7 +20,7 @@ public class Setup_done extends AppCompatActivity {
         setup_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent l=new Intent(Setup_done.this, Homepage.class);
+                Intent l=new Intent(Setup_done.this, Homepage_Version2.class);
                 startActivity(l);
             }
         });
