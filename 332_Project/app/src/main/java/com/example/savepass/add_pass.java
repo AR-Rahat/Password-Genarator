@@ -3,6 +3,9 @@ package com.example.savepass;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,8 +19,8 @@ public class add_pass extends AppCompatActivity {
     //    private static final String TAG = "add_pass";
     private Toolbar toolbar;
     DBconnection DB;
-    private EditText title, url, username, pass;
-    private Button save;
+    private EditText title, url, username, pass, text;
+    private Button save,copy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +31,26 @@ public class add_pass extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         save = (Button) findViewById(R.id.save_pass1);
+        copy = (Button) findViewById(R.id.copy_btn);
         title = (EditText) findViewById(R.id.item_name);
         url = (EditText) findViewById(R.id.pass_url);
         username = (EditText) findViewById(R.id.editTextTextPersonName5);
         pass = (EditText) findViewById(R.id.editTextTextPassword);
+        text = (EditText) findViewById(R.id.editTextTextPassword1);
 
         DB = new DBconnection(this);
+
+
+        copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("edit", text.getText().toString());
+                clipboardManager.setPrimaryClip(clip);
+
+                toastMessage("Password Copied");
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
