@@ -113,7 +113,7 @@
     <EditText
         android:id="@+id/address_preaddress"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Present Address"
         android:inputType="textMultiLine"
@@ -128,7 +128,7 @@
     <EditText
         android:id="@+id/address_peraddress"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Parmanent Address"
         android:inputType="textMultiLine"
