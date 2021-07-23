@@ -6,9 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,26 +29,16 @@ public class add_pass extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         save = (Button) findViewById(R.id.save_pass1);
-        copy = (Button) findViewById(R.id.copy_btn);
         title = (EditText) findViewById(R.id.item_name);
         url = (EditText) findViewById(R.id.pass_url);
         username = (EditText) findViewById(R.id.editTextTextPersonName5);
-        pass = (EditText) findViewById(R.id.editTextTextPassword);
-        text = (EditText) findViewById(R.id.editTextTextPassword1);
+        pass = (EditText) findViewById(R.id.addPassword);
+
+        copy = (Button) findViewById(R.id.copy_btn);
+        text = (EditText) findViewById(R.id.addPassword);
 
         DB = new DBconnection(this);
 
-
-        copy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("edit", text.getText().toString());
-                clipboardManager.setPrimaryClip(clip);
-
-                toastMessage("Password Copied");
-            }
-        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +66,24 @@ public class add_pass extends AppCompatActivity {
                     } else {
                         toastMessage("Empty fields aren't allowed!");
                     }
+                }
+            }
+        });
+
+        copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String t = text.getText().toString();
+
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if(!t.equals("")){
+                    ClipData clip = ClipData.newPlainText("edit", t);
+                    clipboardManager.setPrimaryClip(clip);
+                    toastMessage("Password Copied");
+                }
+                else {
+                    toastMessage("Password Field is Empty");
                 }
             }
         });
