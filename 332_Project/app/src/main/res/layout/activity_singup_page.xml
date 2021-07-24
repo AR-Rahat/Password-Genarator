@@ -24,23 +24,40 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        app:layout_constraintBottom_toBottomOf="@+id/signup_done"
+        android:hint="Username"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.633">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/username"
             android:layout_width="234dp"
-            android:layout_height="48dp"
-            android:inputType="textEmailAddress"
-            tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="246dp" />
+            android:layout_height="48dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Master Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.612"
+        app:passwordToggleEnabled="true">
 
+        <EditText
+            android:id="@+id/editTextTextPassword3"
+            android:layout_width="235dp"
+            android:layout_height="47dp"
+            android:ems="10"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
@@ -53,41 +70,17 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.479"
+        app:layout_constraintVertical_bias="0.505"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="234dp"
             android:layout_height="48dp"
-            android:ems="10"
             android:layout_marginBottom="15dp"
+            android:ems="10"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Master Password"
-        android:inputType="textPassword"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587">
-
-        <EditText
-            android:id="@+id/editTextTextPassword3"
-            android:layout_width="235dp"
-            android:layout_height="47dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <Button
         android:id="@+id/signup_done"
@@ -101,8 +94,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
+        app:layout_constraintVertical_bias="0.722" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.518">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="234dp"
+            android:layout_height="48dp"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
