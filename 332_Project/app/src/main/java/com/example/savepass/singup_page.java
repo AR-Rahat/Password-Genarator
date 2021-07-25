@@ -60,12 +60,12 @@ public class singup_page extends AppCompatActivity {
                             smail.setText("");
                             spass.setText("");
                             scpass.setText("");
-                        } else {
+                        }
+                        else {
                             toastMessage("Password didn't match!!!");
                         }
-                        //AddData(newEntry);
-                        //editText.setText("");
-                    } else {
+                    }
+                    else {
                         toastMessage("Empty fields aren't allowed!");
                     }
                 }
@@ -78,16 +78,16 @@ public class singup_page extends AppCompatActivity {
     public boolean validateUsername(String u)
     {
 //        String u=suser.getText().toString().trim();
-        //boolean dt = DB.isValueExist(u);
+        boolean dt = DB.isValueExist(u);
         if (u.length()==0)
         {
             suser.setError("Field can't be empty");
             return false;
         }
-        /*else if(dt){
+        else if(dt){
             suser.setError("Username already exists");
-          return false;
-        }*/
+            return false;
+        }
         else
         {
             suser.setError(null);

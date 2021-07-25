@@ -174,7 +174,7 @@ public class DBconnection extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         if(data.moveToFirst()){
             do{
-                String em,pa;
+                String pa;
                 //em = data.getString(0);
                 pa = data.getString(2);
                 //e.equals(em) &&
@@ -203,18 +203,23 @@ public class DBconnection extends SQLiteOpenHelper {
         //db.close();
         return data;
     }
+
+
     public boolean isValueExist(String value){
-        String query = "SELECT * FROM " + LOGIN_TABLE + " WHERE L_Username = \""+value+"\"";
+        String query = "SELECT * FROM Login WHERE L_Username = \""+value+"\"";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor data = db.rawQuery(query, null);
-        db.close();
+        //db.close();
         if(data.moveToFirst())
         {
             return true;
         }
-        else
+        else{
             return false;
+        }
     }
+
+
     public Cursor getDBAdd(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + ADDRESS_TABLE;
