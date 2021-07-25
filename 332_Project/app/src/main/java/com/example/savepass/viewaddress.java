@@ -175,7 +175,7 @@ private Toolbar toolbar;
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
                         DB.DeleteAdd(s);
-                        Intent intent=new Intent(viewaddress.this, Address_new.class);
+                        Intent intent=new Intent(viewaddress.this, Homepage.class);
                         startActivity(intent);
                         finish();
                     }

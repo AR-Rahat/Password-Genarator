@@ -130,7 +130,7 @@ public class viewnotes extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
                         DB.DeleteNote(s);
-                        Intent intent=new Intent(viewnotes.this, Notes_new.class);
+                        Intent intent=new Intent(viewnotes.this, Homepage.class);
                         startActivity(intent);
                         finish();
                     }

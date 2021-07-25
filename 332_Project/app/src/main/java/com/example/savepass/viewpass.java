@@ -139,7 +139,7 @@ public class viewpass extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
                         DB.DeletePass(s);
-                        Intent intent=new Intent(viewpass.this, Password_new.class);
+                        Intent intent=new Intent(viewpass.this, Homepage.class);
                         startActivity(intent);
                         finish();
                     }
