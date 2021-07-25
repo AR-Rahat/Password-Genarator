@@ -115,7 +115,7 @@
             android:id="@+id/editTextTextPersonName"
             android:layout_width="234dp"
             android:layout_height="48dp"
-            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@1234567890"
+            android:digits="abcdefghijklmnopqrstuvwxyz@1234567890._"
             android:inputType="textFilter"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="246dp" />

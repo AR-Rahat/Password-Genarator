@@ -48,6 +48,9 @@ public class viewpass extends AppCompatActivity {
             public void onClick(View v) {
                 edit.setVisibility(View.INVISIBLE);
                 save.setVisibility(View.VISIBLE);
+                EnableEditText(url);
+                EnableEditText(username);
+                EnableEditText(pass);
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +58,18 @@ public class viewpass extends AppCompatActivity {
             public void onClick(View v) {
                 save.setVisibility(View.INVISIBLE);
                 edit.setVisibility(View.VISIBLE);
+
+                cPass p = new cPass();
+                p.setTitle(title.getText().toString());
+                p.setUrl(url.getText().toString());
+                p.setUsername(username.getText().toString());
+                p.setPass(pass.getText().toString());
+
+                DB.UpdatePass(p);
+
+                disableEditText(url);
+                disableEditText(username);
+                disableEditText(pass);
             }
         });
 
@@ -76,11 +91,10 @@ public class viewpass extends AppCompatActivity {
             disableEditText(title);
             url.setText(a.getUrl());
             disableEditText(url);
-            disableEditText(username);
-            disableEditText(pass);
             username.setText(a.getUsername());
-            disableEditText(url);
+            disableEditText(username);
             pass.setText(a.getPass());
+            disableEditText(pass);
 
         }else {
             toastMessage("Sorry no data has been found");
@@ -102,9 +116,15 @@ public class viewpass extends AppCompatActivity {
 
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
+        editText.setFocusableInTouchMode(false);
         editText.setEnabled(false);
         editText.setCursorVisible(false);
-        editText.setKeyListener(null);
-        //editText.setBackgroundColor(Color.TRANSPARENT);
+
+    }
+    private void EnableEditText(EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.setEnabled(true);
+        editText.setCursorVisible(true);
     }
 }

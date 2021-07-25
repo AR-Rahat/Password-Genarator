@@ -46,6 +46,8 @@ public class viewnotes extends AppCompatActivity {
             public void onClick(View v) {
                 edit.setVisibility(View.INVISIBLE);
                 save.setVisibility(View.VISIBLE);
+                //EnableEditText(title);
+                EnableEditText(note);
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +55,15 @@ public class viewnotes extends AppCompatActivity {
             public void onClick(View v) {
                 save.setVisibility(View.INVISIBLE);
                 edit.setVisibility(View.VISIBLE);
+                cNote n = new cNote();
+                n.setTitle(title.getText().toString());
+                n.setNote(note.getText().toString());
+
+                DB.UpdateNote(n);
+
+                //disableEditText(title);
+                disableEditText(note);
+
             }
         });
 
@@ -89,10 +100,16 @@ public class viewnotes extends AppCompatActivity {
     }
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
+        editText.setFocusableInTouchMode(false);
         editText.setEnabled(false);
         editText.setCursorVisible(false);
-        editText.setKeyListener(null);
-        //editText.setBackgroundColor(Color.TRANSPARENT);
+
+    }
+    private void EnableEditText(EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.setEnabled(true);
+        editText.setCursorVisible(true);
     }
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();

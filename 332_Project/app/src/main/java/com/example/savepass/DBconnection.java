@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.util.Log;
 //import android.widget.Toast;
 
@@ -264,6 +265,44 @@ public class DBconnection extends SQLiteOpenHelper {
         else{
             return false;
         }
+    }
+
+      //  =======================================================================***************************************************============================  //
+     //                                                                                    UPDATE SECTION                                                        //
+    //  ========================================================================***************************************************===========================  //
+
+    public void UpdatePass(cPass pa){
+        String t,ur,us,p;
+        t = pa.getTitle();
+        ur = pa.getUrl();
+        us = pa.getUsername();
+        p = pa.getPass();
+        String q = "UPDATE "+PASS_TABLE+" SET purl = \""+ur+"\", pusername = \""+us+"\", ppass = \""+p+"\" WHERE ptitle = \""+t+"\" ";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
+    }
+    public void UpdateNote(cNote no){
+        String t,nt;
+        t = no.getTitle();
+        nt = no.getNote();
+        String q = "UPDATE "+NOTE_TABLE+" SET nnotes = \""+nt+"\" WHERE ntitle = \""+t+"\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
+    }
+    public void UpdateAdd(cAdd ad){
+        String t,n,m,e,a1,a2;
+        t = ad.getTitle();
+        n = ad.getName();
+        m = ad.getMobile();
+        e = ad.getEmial();
+        a1= ad.getAdd1();
+        a2= ad.getAdd2();
+        String q = "UPDATE "+ADDRESS_TABLE+" SET aname = \""+n+"\", amobile = \""+m+"\", aemail = \""+e+"\",aadd1 = \""+a1+"\", aadd2 = \""+a2+"\" WHERE atitle = \""+t+"\" ";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
     }
 
 

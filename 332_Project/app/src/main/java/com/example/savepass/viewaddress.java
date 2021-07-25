@@ -42,11 +42,19 @@ private Toolbar toolbar;
         save=findViewById(R.id.save);
 
         save.setVisibility(View.INVISIBLE);
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 edit.setVisibility(View.INVISIBLE);
                 save.setVisibility(View.VISIBLE);
+
+                //EnableEditText(title);
+                EnableEditText(name);
+                EnableEditText(mobile);
+                EnableEditText(email);
+                EnableEditText(add1);
+                EnableEditText(add2);
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +62,25 @@ private Toolbar toolbar;
             public void onClick(View v) {
                 save.setVisibility(View.INVISIBLE);
                 edit.setVisibility(View.VISIBLE);
+
+                cAdd add = new cAdd();
+                add.setTitle(title.getText().toString());
+                add.setName(name.getText().toString());
+                add.setMobile(mobile.getText().toString());
+                add.setEmial(email.getText().toString());
+                add.setAdd1(add1.getText().toString());
+                add.setAdd2(add2.getText().toString());
+
+
+                DB.UpdateAdd(add);
+
+
+                //disableEditText(title);
+                disableEditText(name);
+                disableEditText(mobile);
+                disableEditText(email);
+                disableEditText(add1);
+                disableEditText(add2);
             }
         });
 
@@ -101,10 +128,16 @@ private Toolbar toolbar;
     }
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
+        editText.setFocusableInTouchMode(false);
         editText.setEnabled(false);
         editText.setCursorVisible(false);
-        editText.setKeyListener(null);
-        //editText.setBackgroundColor(Color.TRANSPARENT);
+
+    }
+    private void EnableEditText(EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.setEnabled(true);
+        editText.setCursorVisible(true);
     }
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
