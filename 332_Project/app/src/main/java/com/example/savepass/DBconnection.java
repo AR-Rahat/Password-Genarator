@@ -305,6 +305,41 @@ public class DBconnection extends SQLiteOpenHelper {
         db.close();
     }
 
+      //========================================================***********************************==================================//
+     //                                                 Shared pref er jonno                                                        //
+    //==========================================================**********************************=================================//
+
+    public Cursor GetNE(String s){
+        String q = "Select * from Login Where L_Email = \""+s+"\" or L_Username = \""+s+"\"";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor dt = db.rawQuery(q,null);
+        return dt;
+    }
+
+
+      //========================================================***********************************==================================//
+     //                                                 Delete Methods                                                              //
+    //==========================================================**********************************=================================//
+
+    public void DeletePass(String t){
+        String q = "DELETE FROM "+PASS_TABLE+" WHERE ptitle = \""+t+"\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
+    }
+    public void DeleteNote(String t){
+        String q = "DELETE FROM "+NOTE_TABLE+" WHERE ntitle = \""+t+"\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
+    }
+    public void DeleteAdd(String t){
+        String q = "DELETE FROM "+ADDRESS_TABLE+" WHERE atitle = \""+t+"\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
+    }
+
 
 
 

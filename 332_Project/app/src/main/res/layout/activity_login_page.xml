@@ -49,7 +49,9 @@
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="234dp"
             android:layout_height="48dp"
-            android:inputType="textPersonName|textEmailAddress" />
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@1234567890._"
+            android:inputType="textFilter"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 

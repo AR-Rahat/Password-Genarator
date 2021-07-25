@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -69,6 +70,7 @@ public class login_page extends AppCompatActivity {
                     toastMessage("Login Successful...");
                     Intent lo = getIntent();
                     int ok = lo.getIntExtra("id",-1);
+                    login();
                     if(ok==1){
                         Intent l=new Intent(login_page.this, Setup_done.class);
                         l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -96,10 +98,25 @@ public class login_page extends AppCompatActivity {
     private void login()
     {
         String username=lmail.getText().toString();
-        if(username!=""){
+        /*if(username!=""){
             editor.putBoolean("saveusername",true);
         editor.putString("username",username);
-        editor.commit();}
+        editor.commit();}*/
+        Cursor c = db.GetNE(username);
+        String us,em;
+        us = "";
+        em = "";
+        if(c.moveToFirst()){
+            do{
+                us = c.getString(1);
+                em = c.getString(0);
+            }while(c.moveToNext());
+        }
+        editor.putBoolean("saveusername",true);
+        editor.putString("username",us);
+        editor.putString("email",em);
+        editor.commit();
+
     }
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
