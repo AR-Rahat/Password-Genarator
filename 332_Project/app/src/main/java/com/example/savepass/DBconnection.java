@@ -163,12 +163,9 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
-    // *********************************************************==============================************************************************* //
-
-    /*
-     * This will be out select methods.
-     */
-
+      //===============================================**************************************=================================//
+     //                                                 SELECT METHODS                                                       //
+    //================================================**************************************================================//
     public boolean isLogin(String e,String p){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "Select * from Login Where L_Email = \""+e+"\" or L_Username = \""+e+"\"";
