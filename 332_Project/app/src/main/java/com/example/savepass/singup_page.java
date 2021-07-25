@@ -100,7 +100,7 @@ public class singup_page extends AppCompatActivity {
     {
         String username=suser.getText().toString();
         String email=smail.getText().toString();
-        if(username!=""){
+        if(username!="" && email!=""){
             editor.putBoolean("saveusername",true);
             editor.putString("username",username);
             editor.putString("email",email);

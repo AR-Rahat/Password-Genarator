@@ -4,13 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class change_pass extends AppCompatActivity {
     Button cp;
     private Toolbar toolbar;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    EditText op,np,cnp;
+    String un,mp,nmp,cnmp;
+    DBconnection DB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +27,20 @@ public class change_pass extends AppCompatActivity {
         Toolbar toolbar= findViewById(R.id.changepass_bar);
         setSupportActionBar(toolbar);
 
+        DB = new DBconnection(this);
+        op = (EditText) findViewById(R.id.oldpass);
+        np = (EditText) findViewById(R.id.newmasterpass);
+        cnp = (EditText) findViewById(R.id.conmaspass);
+
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        boolean savelogininfo = sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            un = sharedPreferences.getString("username",null);
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -26,10 +48,38 @@ public class change_pass extends AppCompatActivity {
         cp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(change_pass.this, login_page.class);
-                i.putExtra("id",2);
-                startActivity(i);
+                mp = op.getText().toString();
+                nmp = np.getText().toString();
+                cnmp = cnp.getText().toString();
+                boolean in = DB.isLogin(un,mp);
+                if(in){
+                    if(nmp.length()!=0 && cnmp.length()!=0) {
+                        if (nmp.equals(cnmp)){
+
+                            DB.ChangePass(un,nmp);
+                            Intent i=new Intent(change_pass.this, login_page.class);
+                            i.putExtra("id",2);
+                            logout();
+                            startActivity(i);
+                        } else {
+                            // New password mile nai....
+                        }
+                    }
+                    else{
+                        // oita faka tai........
+                    }
+                }else {
+                    // Old password doesn't match....
+                }
+
             }
         });
+    }
+    private void logout()
+    {
+        editor.putBoolean("saveusername",false);
+        editor.putBoolean("email",false);
+        editor.clear();
+        editor.commit();
     }
 }

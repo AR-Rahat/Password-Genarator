@@ -1,12 +1,17 @@
 package com.example.savepass;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -118,14 +123,67 @@ private Toolbar toolbar;
         }
     }
 
-    public void showPopup(View view)
+    /*public void showPopup(View view)
     {
         PopupMenu popup=new PopupMenu(this,view);
         MenuInflater inflater=popup.getMenuInflater();
         inflater.inflate(R.menu.popup_menu,popup.getMenu());
         popup.show();
         //getMenuInflater().inflate(R.menu.popup_menu,menu);
+    }*/
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, menu);
+        return true;
+    }*/
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        /*getMenuInflater().inflate(R.menu.popup_menu, menu);
+        return true;*/
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.edit_menu, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_delete: {
+                openDialog();
+            }
+            break;
+        }return false;
+    }
+    public void openDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation")
+                .setMessage("Are you sure?")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String s=title.getText().toString();
+                        DB.DeleteAdd(s);
+                        Intent intent=new Intent(viewaddress.this, Address_new.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        //Dialog dialog=new Dialog();
+        builder.show();
+    }
+
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
         editText.setFocusableInTouchMode(false);

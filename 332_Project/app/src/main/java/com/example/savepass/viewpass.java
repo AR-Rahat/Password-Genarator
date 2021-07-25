@@ -1,9 +1,11 @@
 package com.example.savepass;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -102,13 +104,57 @@ public class viewpass extends AppCompatActivity {
 
     }
 
-    public void showPopup(View view)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        /*getMenuInflater().inflate(R.menu.popup_menu, menu);
+        return true;*/
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.edit_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_delete: {
+                openDialog();
+            }
+            break;
+        }return false;
+    }
+    public void openDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation")
+                .setMessage("Are you sure?")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String s=title.getText().toString();
+                        DB.DeletePass(s);
+                        Intent intent=new Intent(viewpass.this, Password_new.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        //Dialog dialog=new Dialog();
+        builder.show();
+    }
+
+    /*public void showPopup(View view)
     {
         PopupMenu popup=new PopupMenu(this,view);
         MenuInflater inflater=popup.getMenuInflater();
         inflater.inflate(R.menu.popup_menu,popup.getMenu());
         popup.show();
-    }
+    }*/
 
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();

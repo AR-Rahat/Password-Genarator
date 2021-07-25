@@ -16,7 +16,7 @@ public class DBconnection extends SQLiteOpenHelper {
 
 
     /*
-    *Database Name-----------
+     *Database Name-----------
      */
     private static final String DBNAME = "Safepass";
 
@@ -80,7 +80,7 @@ public class DBconnection extends SQLiteOpenHelper {
 
 
     /*
-        * This are the insert methods for our project-------------
+     * This are the insert methods for our project-------------
      */
     public boolean addData(String u,String e,String p){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -163,8 +163,8 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
-      //===============================================**************************************=================================//
-     //                                                 SELECT METHODS                                                       //
+    //===============================================**************************************=================================//
+    //                                                 SELECT METHODS                                                       //
     //================================================**************************************================================//
     public boolean isLogin(String e,String p){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -264,8 +264,8 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
-      //  =======================================================================***************************************************============================  //
-     //                                                                                    UPDATE SECTION                                                        //
+    //  =======================================================================***************************************************============================  //
+    //                                                                                    UPDATE SECTION                                                        //
     //  ========================================================================***************************************************===========================  //
 
     public void UpdatePass(cPass pa){
@@ -301,9 +301,15 @@ public class DBconnection extends SQLiteOpenHelper {
         db.execSQL(q);
         db.close();
     }
+    public void ChangePass(String un,String np){
+        String q = "UPDATE "+LOGIN_TABLE+" SET L_password = \""+np+"\" WHERE L_Username = \""+un+"\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(q);
+        db.close();
+    }
 
-      //========================================================***********************************==================================//
-     //                                                 Shared pref er jonno                                                        //
+    //========================================================***********************************==================================//
+    //                                                 Shared pref er jonno                                                        //
     //==========================================================**********************************=================================//
 
     public Cursor GetNE(String s){
@@ -314,8 +320,8 @@ public class DBconnection extends SQLiteOpenHelper {
     }
 
 
-      //========================================================***********************************==================================//
-     //                                                 Delete Methods                                                              //
+    //========================================================***********************************==================================//
+    //                                                 Delete Methods                                                              //
     //==========================================================**********************************=================================//
 
     public void DeletePass(String t){

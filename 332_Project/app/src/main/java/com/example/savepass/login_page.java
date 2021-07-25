@@ -59,7 +59,7 @@ public class login_page extends AppCompatActivity {
         l_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                //login();
                 String em,pa;
                 em = lmail.getText().toString();
                 pa =lpass.getText().toString();
