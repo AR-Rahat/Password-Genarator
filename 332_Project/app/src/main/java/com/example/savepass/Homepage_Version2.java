@@ -69,11 +69,13 @@ public class Homepage_Version2 extends AppCompatActivity {
 
         View headerView=navigationView.getHeaderView(0);
         TextView navusername=(TextView) headerView.findViewById(R.id.header_username);
+        TextView email=(TextView) headerView.findViewById(R.id.emailview);
 
         savelogininfo=sharedPreferences.getBoolean("saveusername",true);
         if (savelogininfo==true)
         {
             navusername.setText(sharedPreferences.getString("username",null));
+            email.setText(sharedPreferences.getString("email",null));
         }
 
         // Passing each menu ID as a set of Ids because each

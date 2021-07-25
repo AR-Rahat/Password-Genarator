@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Phone no"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:textColorHint="@android:color/holo_red_dark"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"

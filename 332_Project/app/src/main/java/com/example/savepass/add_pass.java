@@ -54,7 +54,7 @@ public class add_pass extends AppCompatActivity {
                     toastMessage("You must have 8 digits/characters in your password");
                 }
                 else if (title.length() > 50) {
-                    toastMessage("Title can not be exceed 50 characters");
+                    toastMessage("Title can not exceed 50 characters");
                 }
                 else {
                     if (title.length() != 0 && url.length() != 0 && username.length() != 0 && pass.length() != 0) {

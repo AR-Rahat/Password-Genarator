@@ -22,6 +22,7 @@ public class DBconnection extends SQLiteOpenHelper {
 
     private static final String LOGIN_TABLE = "Login";
     private static final String Email = "L_Email";
+    private static final String Username = "L_Username";
     private static final String MPass = "L_password";
 
 
@@ -51,7 +52,7 @@ public class DBconnection extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String ct;
-        ct = "CREATE TABLE "+LOGIN_TABLE+" ("+Email+" text primary key not null,L_password text not null)";
+        ct = "CREATE TABLE "+LOGIN_TABLE+" ("+Email+" text primary key not null,"+Username+" text not null UNIQUE,L_password text not null)";
         db.execSQL(ct);
         String ct1;
         ct1 = "CREATE TABLE "+PASS_TABLE+" ("+PTitle+" text primary key not null,purl text not null,pusername text not null,ppass text not null)";
@@ -80,13 +81,14 @@ public class DBconnection extends SQLiteOpenHelper {
     /*
         * This are the insert methods for our project-------------
      */
-    public boolean addData(String e,String p){
+    public boolean addData(String u,String e,String p){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        cv.put(Username,u);
         cv.put(Email,e);
         cv.put(MPass,p);
 
-        Log.d(TAG,"Adding: "+e+" and "+p+" to"+LOGIN_TABLE);
+        Log.d(TAG,"Adding: "+u+" and "+e+" and "+p+" to"+LOGIN_TABLE);
 
         long inserted = db.insert(LOGIN_TABLE,null,cv);
         //db.close();
@@ -168,13 +170,13 @@ public class DBconnection extends SQLiteOpenHelper {
 
     public boolean isLogin(String e,String p){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "Select * from Login Where L_Email = \""+e+"\"";
+        String query = "Select * from Login Where L_Email = \""+e+"\" or L_Username = \""+e+"\"";
         Cursor data = db.rawQuery(query, null);
         if(data.moveToFirst()){
             do{
                 String em,pa;
                 //em = data.getString(0);
-                pa = data.getString(1);
+                pa = data.getString(2);
                 //e.equals(em) &&
                 if(p.equals(pa)){
                     return true;
@@ -200,6 +202,18 @@ public class DBconnection extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         //db.close();
         return data;
+    }
+    public boolean isValueExist(String value){
+        String query = "SELECT * FROM " + LOGIN_TABLE + " WHERE L_Username = \""+value+"\"";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor data = db.rawQuery(query, null);
+        db.close();
+        if(data.moveToFirst())
+        {
+            return true;
+        }
+        else
+            return false;
     }
     public Cursor getDBAdd(){
         SQLiteDatabase db = this.getWritableDatabase();

@@ -62,6 +62,7 @@ public class setting_page extends AppCompatActivity {
     private void logout()
     {
             editor.putBoolean("saveusername",false);
+            editor.putBoolean("email",false);
             editor.clear();
             editor.commit();
     }

@@ -8,7 +8,7 @@
     tools:context=".first_time_show">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/emailview"
         android:layout_width="249dp"
         android:layout_height="47dp"
         android:layout_marginTop="96dp"
@@ -78,7 +78,7 @@
         android:layout_marginTop="117dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/emailview"
         app:srcCompat="@drawable/vault" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
