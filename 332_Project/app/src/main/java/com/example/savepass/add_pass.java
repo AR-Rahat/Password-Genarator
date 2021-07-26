@@ -18,7 +18,7 @@ public class add_pass extends AppCompatActivity {
     private Toolbar toolbar;
     DBconnection DB;
     private EditText title, url, username, pass, text;
-    private Button save,copy;
+    private Button save, copy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +50,15 @@ public class add_pass extends AppCompatActivity {
                 pusername = username.getText().toString();
                 ppass = pass.getText().toString();
 
-                if (pass.length() < 8) {
-                    toastMessage("You must have 8 digits/characters in your password");
-                }
-                else if (title.length() > 50) {
-                    toastMessage("Title can not exceed 50 characters");
-                }
-                else {
-                    if (title.length() != 0 && url.length() != 0 && username.length() != 0 && pass.length() != 0) {
-                        AddPass(ptitle, purl, pusername, ppass);
-                        title.setText("");
-                        url.setText("");
-                        username.setText("");
-                        pass.setText("");
-                    } else {
-                        toastMessage("Empty fields aren't allowed!");
-                    }
+
+                if (title.length() != 0 && url.length() != 0 && username.length() != 0 && pass.length() != 0) {
+                    AddPass(ptitle, purl, pusername, ppass);
+                    title.setText("");
+                    url.setText("");
+                    username.setText("");
+                    pass.setText("");
+                } else {
+                    toastMessage("Empty fields aren't allowed!");
                 }
             }
         });
@@ -77,12 +70,11 @@ public class add_pass extends AppCompatActivity {
                 String t = text.getText().toString();
 
                 ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                if(!t.equals("")){
+                if (!t.equals("")) {
                     ClipData clip = ClipData.newPlainText("edit", t);
                     clipboardManager.setPrimaryClip(clip);
                     toastMessage("Password Copied");
-                }
-                else {
+                } else {
                     toastMessage("Password Field is Empty");
                 }
             }

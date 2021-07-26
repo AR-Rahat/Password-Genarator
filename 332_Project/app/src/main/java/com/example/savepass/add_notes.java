@@ -39,18 +39,16 @@ public class add_notes extends AppCompatActivity {
                 ntitle = title.getText().toString();
                 nnote = note.getText().toString();
 
-                if (title.length() > 50) {
-                    toastMessage("Title can not be exceed 50 characters");
+
+                if (title.length() != 0 && note.length() != 0) {
+                    AddNote(ntitle, nnote);
+                    title.setText("");
+                    note.setText("");
                 } else {
-                    if (title.length() != 0 && note.length() != 0) {
-                        AddNote(ntitle, nnote);
-                        title.setText("");
-                        note.setText("");
-                    } else {
-                        toastMessage("Empty fields aren't allowed!");
-                    }
+                    toastMessage("Empty fields aren't allowed!");
                 }
             }
+
         });
     }
 

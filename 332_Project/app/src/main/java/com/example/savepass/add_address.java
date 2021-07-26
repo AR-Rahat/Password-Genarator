@@ -47,22 +47,20 @@ public class add_address extends AppCompatActivity {
                 aadd1 = add1.getText().toString();
                 aadd2 = add2.getText().toString();
 
-                if (title.length() > 50) {
-                    toastMessage("Title can not be exceed 50 characters");
+
+                if (title.length() != 0 && name.length() != 0 && mobile.length() != 0 && email.length() != 0 && add1.length() != 0 && add2.length() != 0) {
+                    AddAddress(atitle, aname, amobile, aemail, aadd1, aadd2);
+                    title.setText("");
+                    name.setText("");
+                    mobile.setText("");
+                    email.setText("");
+                    add1.setText("");
+                    add2.setText("");
                 } else {
-                    if (title.length() != 0 && name.length() != 0 && mobile.length() != 0 && email.length() != 0 && add1.length() != 0 && add2.length() != 0) {
-                        AddAddress(atitle, aname, amobile, aemail, aadd1, aadd2);
-                        title.setText("");
-                        name.setText("");
-                        mobile.setText("");
-                        email.setText("");
-                        add1.setText("");
-                        add2.setText("");
-                    } else {
-                        toastMessage("Empty fields aren't allowed!");
-                    }
+                    toastMessage("Empty fields aren't allowed!");
                 }
             }
+
         });
     }
 
