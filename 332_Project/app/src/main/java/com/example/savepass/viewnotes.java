@@ -146,7 +146,7 @@ public class viewnotes extends AppCompatActivity {
                         String s=title.getText().toString();
                         DB.DeleteNote(s,userN);
                         Intent intent=new Intent(viewnotes.this, Homepage_Version2.class);
-                        intent.putExtra("id",2);
+//                        intent.putExtra("id",2);
                         startActivity(intent);
                         finish();
                     }

@@ -86,7 +86,7 @@ public class Notes_new extends Fragment {
             //then add it to the ArrayList
             String s = dtb.getString(0);
             String a = Integer.toString(i);
-            String b = a+": "+s;
+            String b = a+". "+s;
             //toastMessage(b);
             listData.add(b);
             i++;
