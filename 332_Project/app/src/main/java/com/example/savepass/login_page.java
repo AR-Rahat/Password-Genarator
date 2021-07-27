@@ -67,7 +67,7 @@ public class login_page extends AppCompatActivity {
                 boolean in = db.isLogin(em,pa);
                 //toastMessage(in == true?"true":"false");
                 if(in){
-                    toastMessage("Login Successful...");
+//                    toastMessage("Login Successful...");
                     Intent lo = getIntent();
                     int ok = lo.getIntExtra("id",-1);
                     login();

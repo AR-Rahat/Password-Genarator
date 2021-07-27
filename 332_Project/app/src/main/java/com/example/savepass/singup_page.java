@@ -112,7 +112,7 @@ public class singup_page extends AppCompatActivity {
         boolean insertData = DB.addData(u,e,p);
 
         if (insertData) {
-            toastMessage("Signup Successfull.");
+//            toastMessage("Signup Successfull.");
             Intent l=new Intent(singup_page.this, login_page.class);
             l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |

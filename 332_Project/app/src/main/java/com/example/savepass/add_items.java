@@ -20,6 +20,9 @@ public class add_items extends AppCompatActivity {
         toolbar= findViewById(R.id.additem_bar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         p_btn=(Button) findViewById(R.id.button);
         n_btn=(Button) findViewById(R.id.button2);
         a_btn=(Button) findViewById(R.id.button3);

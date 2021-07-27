@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 public class viewaddress extends AppCompatActivity {
@@ -190,7 +189,7 @@ private Toolbar toolbar;
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
                         DB.DeleteAdd(s,userN);
-                        Intent intent=new Intent(viewaddress.this, Homepage.class);
+                        Intent intent=new Intent(viewaddress.this, Homepage_Version2.class);
                         startActivity(intent);
                         finish();
                     }

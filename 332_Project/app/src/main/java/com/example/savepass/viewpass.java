@@ -153,7 +153,7 @@ public class viewpass extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
                         DB.DeletePass(s,userN);
-                        Intent intent=new Intent(viewpass.this, Homepage.class);
+                        Intent intent=new Intent(viewpass.this, Homepage_Version2.class);
                         startActivity(intent);
                         finish();
                     }

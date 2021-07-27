@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,9 @@ public class add_pass extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.addpass_bar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         save = (Button) findViewById(R.id.save_pass1);
         title = (EditText) findViewById(R.id.item_name);
@@ -99,7 +103,10 @@ public class add_pass extends AppCompatActivity {
         boolean insertData = DB.addpass(t, u, un, p,UN);
 
         if (insertData) {
-            toastMessage("Successful");
+//            toastMessage("Successful");
+            Intent intent=new Intent(add_pass.this, add_items.class);
+            startActivity(intent);
+            finish();
         } else {
             toastMessage("Something went wrong");
         }

@@ -29,11 +29,11 @@
         <activity android:name=".notes" />
         <activity android:name=".password" />
         <activity android:name=".add_address"
-            android:parentActivityName=".Homepage_Version2"/>
+            android:parentActivityName=".add_items"/>
         <activity android:name=".add_notes"
-            android:parentActivityName=".Homepage_Version2"/>
+            android:parentActivityName=".add_items"/>
         <activity android:name=".add_pass"
-            android:parentActivityName=".Homepage_Version2"/>
+            android:parentActivityName=".add_items"/>
         <activity android:name=".add_items"
             android:parentActivityName=".Homepage_Version2"/>
         <activity android:name=".Homepage" />
