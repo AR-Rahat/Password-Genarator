@@ -154,6 +154,7 @@ public class viewpass extends AppCompatActivity {
                         String s=title.getText().toString();
                         DB.DeletePass(s,userN);
                         Intent intent=new Intent(viewpass.this, Homepage_Version2.class);
+                        intent.putExtra("id",1);
                         startActivity(intent);
                         finish();
                     }

@@ -190,6 +190,7 @@ private Toolbar toolbar;
                         String s=title.getText().toString();
                         DB.DeleteAdd(s,userN);
                         Intent intent=new Intent(viewaddress.this, Homepage_Version2.class);
+                        intent.putExtra("id",3);
                         startActivity(intent);
                         finish();
                     }

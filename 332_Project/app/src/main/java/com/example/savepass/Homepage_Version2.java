@@ -14,6 +14,8 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -50,6 +52,25 @@ public class Homepage_Version2 extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        Intent in = getIntent();
+        int i = in.getIntExtra("id",-1);
+        if(i==1){
+            FragmentTransaction fr = getSupportFragmentManager().beginTransaction();
+            fr.replace(R.id.drawer_layout2,new Password_new()).commit();
+            toolbar.setTitle("Passwords");
+            //R.id.nav_pass2.
+        }
+        else if(i==2){
+            FragmentTransaction fr = getSupportFragmentManager().beginTransaction();
+            fr.replace(R.id.drawer_layout2,new Notes_new()).commit();
+            toolbar.setTitle("Secure Notes");
+        }
+        else if(i==3){
+            FragmentTransaction fr = getSupportFragmentManager().beginTransaction();
+            fr.replace(R.id.drawer_layout2,new Address_new()).commit();
+            toolbar.setTitle("Addresses");
+        }
+
 
         //setSupportActionBar(binding.appBarHomepageVersion2.toolbar2);
         binding.appBarHomepageVersion2.floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +101,7 @@ public class Homepage_Version2 extends AppCompatActivity {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-
+        //Fragment fragment = getFragmentManager()
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_pass2,R.id.nav_notes2,R.id.nav_address2,R.id.nav_aboutus2,R.id.nav_share2,R.id.nav_setting2)
                 .setDrawerLayout(drawerLayout)
