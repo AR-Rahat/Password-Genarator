@@ -1,6 +1,8 @@
 package com.example.savepass;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -28,6 +30,10 @@ public class Password_new extends Fragment {
     DBconnection DB;
     private Cursor dt;
     private ListView lv_pass1;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +49,16 @@ public class Password_new extends Fragment {
         lv_pass1=(ListView) view.findViewById(R.id.lv_pass);
         //lv_pass1.setOnItemClickListener(this);
         DB = new DBconnection(getActivity());
-        dt = DB.getDBPass();
+        sharedPreferences=this.getActivity().getSharedPreferences("loginusername", Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
+        dt = DB.getDBPass(userN);
         if(dt.moveToFirst()) {
             Fill(dt);
         }

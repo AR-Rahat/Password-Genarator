@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +27,10 @@ public class viewpass extends AppCompatActivity {
     private EditText title,url,username,pass;
     private Button edit,save;
     private String pt;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -37,6 +42,15 @@ public class viewpass extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
 
         title = findViewById(R.id.item_title);
         url = findViewById(R.id.pass_url);
@@ -67,7 +81,7 @@ public class viewpass extends AppCompatActivity {
                 p.setUsername(username.getText().toString());
                 p.setPass(pass.getText().toString());
 
-                DB.UpdatePass(p);
+                DB.UpdatePass(p,userN);
 
                 disableEditText(url);
                 disableEditText(username);
@@ -81,7 +95,7 @@ public class viewpass extends AppCompatActivity {
         pt = Ri.getStringExtra("title");
 
         cPass a = new cPass();
-        Cursor dt = DB.getPass(pt);
+        Cursor dt = DB.getPass(pt,userN);
         if(dt.moveToFirst()){
             do{
                 a.setTitle(dt.getString(0));
@@ -138,7 +152,7 @@ public class viewpass extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
-                        DB.DeletePass(s);
+                        DB.DeletePass(s,userN);
                         Intent intent=new Intent(viewpass.this, Homepage.class);
                         startActivity(intent);
                         finish();

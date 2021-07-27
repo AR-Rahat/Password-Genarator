@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,10 @@ private Toolbar toolbar;
     private EditText title,name,mobile,email,add1,add2;
     private Button edit,save;
     private String at;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
 
     @Override
@@ -47,6 +52,16 @@ private Toolbar toolbar;
         save=findViewById(R.id.save);
 
         save.setVisibility(View.INVISIBLE);
+
+
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +92,7 @@ private Toolbar toolbar;
                 add.setAdd2(add2.getText().toString());
 
 
-                DB.UpdateAdd(add);
+                DB.UpdateAdd(add,userN);
 
 
                 //disableEditText(title);
@@ -95,7 +110,7 @@ private Toolbar toolbar;
         at = Ri.getStringExtra("title");
 
         cAdd a = new cAdd();
-        Cursor dt = DB.getAdd(at);
+        Cursor dt = DB.getAdd(at,userN);
         if(dt.moveToFirst()){
             do{
                 a.setTitle(dt.getString(0));
@@ -174,7 +189,7 @@ private Toolbar toolbar;
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
-                        DB.DeleteAdd(s);
+                        DB.DeleteAdd(s,userN);
                         Intent intent=new Intent(viewaddress.this, Homepage.class);
                         startActivity(intent);
                         finish();

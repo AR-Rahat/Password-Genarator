@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,10 @@ public class add_pass extends AppCompatActivity {
     DBconnection DB;
     private EditText title, url, username, pass, text;
     private Button save, copy;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,15 @@ public class add_pass extends AppCompatActivity {
 
         DB = new DBconnection(this);
 
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +66,7 @@ public class add_pass extends AppCompatActivity {
 
 
                 if (title.length() != 0 && url.length() != 0 && username.length() != 0 && pass.length() != 0) {
-                    AddPass(ptitle, purl, pusername, ppass);
+                    AddPass(ptitle, purl, pusername, ppass,userN);
                     title.setText("");
                     url.setText("");
                     username.setText("");
@@ -81,8 +95,8 @@ public class add_pass extends AppCompatActivity {
         });
     }
 
-    public void AddPass(String t, String u, String un, String p) {
-        boolean insertData = DB.addpass(t, u, un, p);
+    public void AddPass(String t, String u, String un, String p,String UN) {
+        boolean insertData = DB.addpass(t, u, un, p,UN);
 
         if (insertData) {
             toastMessage("Successful");

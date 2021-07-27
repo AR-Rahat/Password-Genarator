@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,10 @@ public class notes extends AppCompatActivity {
     private Cursor dt;
     private Toolbar toolbar;
     FloatingActionButton f_btn2;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,16 @@ public class notes extends AppCompatActivity {
         lv_note1 = findViewById(R.id.lv_note);
         DB = new DBconnection(this);
 
-        dt = DB.getDBNote();
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
+        dt = DB.getDBNote(userN);
         if(dt.moveToFirst()){
             Fill(dt);
         }

@@ -3,6 +3,7 @@ package com.example.savepass;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,10 @@ public class add_notes extends AppCompatActivity {
     DBconnection DB;
     private EditText title, note;
     private Button save;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,15 @@ public class add_notes extends AppCompatActivity {
 
         DB = new DBconnection(this);
 
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +55,7 @@ public class add_notes extends AppCompatActivity {
 
 
                 if (title.length() != 0 && note.length() != 0) {
-                    AddNote(ntitle, nnote);
+                    AddNote(ntitle, nnote,userN);
                     title.setText("");
                     note.setText("");
                 } else {
@@ -52,8 +66,8 @@ public class add_notes extends AppCompatActivity {
         });
     }
 
-    public void AddNote(String t, String u) {
-        boolean insertData = DB.addnote(t, u);
+    public void AddNote(String t, String u,String UN) {
+        boolean insertData = DB.addnote(t, u,UN);
 
         if (insertData) {
             toastMessage("Successful");

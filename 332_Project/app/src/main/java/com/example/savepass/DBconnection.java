@@ -32,10 +32,12 @@ public class DBconnection extends SQLiteOpenHelper {
     private static final String PURL = "purl";
     private static final String PUSERNAME = "pusername";
     private static final String PPASS = "ppass";
+    private static final String PUsername = "pun";
 
     private static final String NOTE_TABLE = "Notes";
     private static final String NTITLE = "ntitle";
     private static final String NNOTES = "nnotes";
+    private static final String NUsername = "nun";
 
     private static final String ADDRESS_TABLE = "Address";
     private static final String ATITLE = "atitle";
@@ -44,6 +46,7 @@ public class DBconnection extends SQLiteOpenHelper {
     private static final String AEMAIL = "aemail";
     private static final String AADD1 = "aadd1";
     private static final String AADD2 = "aadd2";
+    private static final String AUsername = "aun";
 
 
     public DBconnection(Context context) {
@@ -55,15 +58,17 @@ public class DBconnection extends SQLiteOpenHelper {
         String ct;
         ct = "CREATE TABLE "+LOGIN_TABLE+" ("+Email+" text primary key not null,"+Username+" text not null UNIQUE,L_password text not null)";
         db.execSQL(ct);
+
         String ct1;
-        ct1 = "CREATE TABLE "+PASS_TABLE+" ("+PTitle+" text primary key not null,purl text not null,pusername text not null,ppass text not null)";
+        ct1 = "CREATE TABLE "+PASS_TABLE+" ("+PTitle+" text primary key not null,purl text not null,pusername text not null,ppass text not null,pun text not null)";
         db.execSQL(ct1);
+
         String ct2;
-        ct2 = "CREATE TABLE "+NOTE_TABLE+" ("+NTITLE+" text primary key not null,nnotes text not null)";
+        ct2 = "CREATE TABLE "+NOTE_TABLE+" ("+NTITLE+" text primary key not null,nnotes text not null,nun text not null)";
         db.execSQL(ct2);
 
         String ct3;
-        ct3 = "CREATE TABLE "+ADDRESS_TABLE+" ("+ATITLE+" text primary key not null,aname text not null,amobile text not null,aemail text not null,aadd1 text not null,aadd2 text not null)";
+        ct3 = "CREATE TABLE "+ADDRESS_TABLE+" ("+ATITLE+" text primary key not null,aname text not null,amobile text not null,aemail text not null,aadd1 text not null,aadd2 text not null,aun text not null)";
         db.execSQL(ct3);
 
     }
@@ -89,7 +94,7 @@ public class DBconnection extends SQLiteOpenHelper {
         cv.put(Email,e);
         cv.put(MPass,p);
 
-        Log.d(TAG,"Adding: "+u+" and "+e+" and "+p+" to"+LOGIN_TABLE);
+        //Log.d(TAG,"Adding: "+u+" and "+e+" and "+p+" to"+LOGIN_TABLE);
 
         long inserted = db.insert(LOGIN_TABLE,null,cv);
         //db.close();
@@ -101,13 +106,14 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addpass(String t,String u,String n,String p){
+    public boolean addpass(String t,String u,String n,String p,String un){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(PTitle,t);
         cv.put(PURL,u);
         cv.put(PUSERNAME,n);
         cv.put(PPASS,p);
+        cv.put(PUsername,un);
 
         //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
 
@@ -121,11 +127,12 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addnote(String t,String n){
+    public boolean addnote(String t,String n,String un){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(NTITLE,t);
         cv.put(NNOTES,n);
+        cv.put(NUsername,un);
 
 
         //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
@@ -140,7 +147,7 @@ public class DBconnection extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addaddress(String t,String n,String m,String e,String add1,String add2){
+    public boolean addaddress(String t,String n,String m,String e,String add1,String add2,String un){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(ATITLE,t);
@@ -149,6 +156,7 @@ public class DBconnection extends SQLiteOpenHelper {
         cv.put(AEMAIL,e);
         cv.put(AADD1,add1);
         cv.put(AADD2,add2);
+        cv.put(AUsername,un);
 
         //Log.d(TAG,"Adding: "+t+" and "+u+"  to"+LOGIN_TABLE);
 
@@ -166,6 +174,58 @@ public class DBconnection extends SQLiteOpenHelper {
     //===============================================**************************************=================================//
     //                                                 SELECT METHODS                                                       //
     //================================================**************************************================================//
+
+    public Cursor getDBPass(String un){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + PASS_TABLE + " WHERE pun = \""+un+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getDBNote(String un){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + NOTE_TABLE + " WHERE nun = \""+un+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getDBAdd(String un){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + ADDRESS_TABLE + " WHERE aun = \""+un+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+
+
+    public Cursor getPass(String n,String un){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + PASS_TABLE +" Where ptitle = \""+n+"\" and pun = \""+un+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getNote(String n,String un){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + NOTE_TABLE +" Where ntitle = \"" + n + "\" and nun = \""+un+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+    public Cursor getAdd(String n,String un){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + ADDRESS_TABLE +" Where atitle = \""+n+"\" and aun = \""+un+"\"";
+        Cursor data = db.rawQuery(query, null);
+        //db.close();
+        return data;
+    }
+      //  =======================================================================***************************************************============================  //
+     //                                                                                    Boolean Section                                                       //
+    //  ========================================================================***************************************************===========================  //
+
     public boolean isLogin(String e,String p){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "Select * from Login Where L_Email = \""+e+"\" or L_Username = \""+e+"\"";
@@ -187,69 +247,20 @@ public class DBconnection extends SQLiteOpenHelper {
             return false;
         }
     }
-    public Cursor getDBPass(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + PASS_TABLE;
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        return data;
-    }
-    public Cursor getDBNote(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + NOTE_TABLE;
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        return data;
-    }
-
 
     public boolean isValueExist(String value){
-        String query = "SELECT * FROM Login WHERE L_Username = \""+value+"\"";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        if(data.moveToFirst())
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-
-    public Cursor getDBAdd(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + ADDRESS_TABLE;
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        return data;
-    }
-
-    public Cursor getPass(String n){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + PASS_TABLE +" Where ptitle = \""+n+"\"";
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        return data;
-    }
-    public Cursor getNote(String n){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + NOTE_TABLE +" Where ntitle = \"" + n + "\"";
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        return data;
-    }
-    public Cursor getAdd(String n){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + ADDRESS_TABLE +" Where atitle = \""+n+"\"";
-        Cursor data = db.rawQuery(query, null);
-        //db.close();
-        return data;
-    }
+          String query = "SELECT * FROM Login WHERE L_Username = \""+value+"\"";
+          SQLiteDatabase db = this.getReadableDatabase();
+          Cursor data = db.rawQuery(query, null);
+          //db.close();
+          if(data.moveToFirst())
+          {
+              return true;
+          }
+          else{
+              return false;
+          }
+      }
 
     public boolean isLog(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -268,27 +279,27 @@ public class DBconnection extends SQLiteOpenHelper {
     //                                                                                    UPDATE SECTION                                                        //
     //  ========================================================================***************************************************===========================  //
 
-    public void UpdatePass(cPass pa){
+    public void UpdatePass(cPass pa,String un){
         String t,ur,us,p;
         t = pa.getTitle();
         ur = pa.getUrl();
         us = pa.getUsername();
         p = pa.getPass();
-        String q = "UPDATE "+PASS_TABLE+" SET purl = \""+ur+"\", pusername = \""+us+"\", ppass = \""+p+"\" WHERE ptitle = \""+t+"\" ";
+        String q = "UPDATE "+PASS_TABLE+" SET purl = \""+ur+"\", pusername = \""+us+"\", ppass = \""+p+"\" WHERE ptitle = \""+t+"\" and pun = \""+un+"\"";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(q);
         db.close();
     }
-    public void UpdateNote(cNote no){
+    public void UpdateNote(cNote no,String un){
         String t,nt;
         t = no.getTitle();
         nt = no.getNote();
-        String q = "UPDATE "+NOTE_TABLE+" SET nnotes = \""+nt+"\" WHERE ntitle = \""+t+"\"";
+        String q = "UPDATE "+NOTE_TABLE+" SET nnotes = \""+nt+"\" WHERE ntitle = \""+t+"\" and nun = \""+un+"\"";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(q);
         db.close();
     }
-    public void UpdateAdd(cAdd ad){
+    public void UpdateAdd(cAdd ad,String un){
         String t,n,m,e,a1,a2;
         t = ad.getTitle();
         n = ad.getName();
@@ -296,7 +307,7 @@ public class DBconnection extends SQLiteOpenHelper {
         e = ad.getEmial();
         a1= ad.getAdd1();
         a2= ad.getAdd2();
-        String q = "UPDATE "+ADDRESS_TABLE+" SET aname = \""+n+"\", amobile = \""+m+"\", aemail = \""+e+"\",aadd1 = \""+a1+"\", aadd2 = \""+a2+"\" WHERE atitle = \""+t+"\" ";
+        String q = "UPDATE "+ADDRESS_TABLE+" SET aname = \""+n+"\", amobile = \""+m+"\", aemail = \""+e+"\",aadd1 = \""+a1+"\", aadd2 = \""+a2+"\" WHERE atitle = \""+t+"\" and aun = \""+un+"\"";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(q);
         db.close();
@@ -324,20 +335,20 @@ public class DBconnection extends SQLiteOpenHelper {
     //                                                 Delete Methods                                                              //
     //==========================================================**********************************=================================//
 
-    public void DeletePass(String t){
-        String q = "DELETE FROM "+PASS_TABLE+" WHERE ptitle = \""+t+"\"";
+    public void DeletePass(String t,String un){
+        String q = "DELETE FROM "+PASS_TABLE+" WHERE ptitle = \""+t+"\" and pun = \""+un+"\"";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(q);
         db.close();
     }
-    public void DeleteNote(String t){
-        String q = "DELETE FROM "+NOTE_TABLE+" WHERE ntitle = \""+t+"\"";
+    public void DeleteNote(String t,String un){
+        String q = "DELETE FROM "+NOTE_TABLE+" WHERE ntitle = \""+t+"\" and nun = \""+un+"\"";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(q);
         db.close();
     }
-    public void DeleteAdd(String t){
-        String q = "DELETE FROM "+ADDRESS_TABLE+" WHERE atitle = \""+t+"\"";
+    public void DeleteAdd(String t,String un){
+        String q = "DELETE FROM "+ADDRESS_TABLE+" WHERE atitle = \""+t+"\" and aun = \""+un+"\"";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(q);
         db.close();

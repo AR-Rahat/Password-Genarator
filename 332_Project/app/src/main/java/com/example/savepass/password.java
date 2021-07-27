@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,10 @@ public class password extends AppCompatActivity {
     private  ListView lv_pass1;
     private Cursor dt;
     FloatingActionButton f_btn1;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,16 @@ public class password extends AppCompatActivity {
         lv_pass1 = findViewById(R.id.lv_pass);
         DB = new DBconnection(this);
 
-        dt = DB.getDBPass();
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
+        dt = DB.getDBPass(userN);
         if(dt.moveToFirst()){
             Fill(dt);
         }

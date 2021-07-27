@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +28,11 @@ public class viewnotes extends AppCompatActivity {
     private Button edit,save;
     private String nt;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,15 @@ public class viewnotes extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
 
 
 
@@ -64,7 +79,7 @@ public class viewnotes extends AppCompatActivity {
                 n.setTitle(title.getText().toString());
                 n.setNote(note.getText().toString());
 
-                DB.UpdateNote(n);
+                DB.UpdateNote(n,userN);
 
                 //disableEditText(title);
                 disableEditText(note);
@@ -79,7 +94,7 @@ public class viewnotes extends AppCompatActivity {
         nt = Ri.getStringExtra("title");
 
         cNote a = new cNote();
-        Cursor dt = DB.getNote(nt);
+        Cursor dt = DB.getNote(nt,userN);
         if(dt.moveToFirst()){
             do{
                 a.setTitle(dt.getString(0));
@@ -129,7 +144,7 @@ public class viewnotes extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String s=title.getText().toString();
-                        DB.DeleteNote(s);
+                        DB.DeleteNote(s,userN);
                         Intent intent=new Intent(viewnotes.this, Homepage.class);
                         startActivity(intent);
                         finish();

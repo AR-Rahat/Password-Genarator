@@ -3,6 +3,7 @@ package com.example.savepass;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,10 @@ public class add_address extends AppCompatActivity {
     DBconnection DB;
     private EditText title, name, mobile, email, add1, add2;
     private Button save;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,16 @@ public class add_address extends AppCompatActivity {
         add2 = (EditText) findViewById(R.id.address_peraddress);
         DB = new DBconnection(this);
 
+
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +64,7 @@ public class add_address extends AppCompatActivity {
 
 
                 if (title.length() != 0 && name.length() != 0 && mobile.length() != 0 && email.length() != 0 && add1.length() != 0 && add2.length() != 0) {
-                    AddAddress(atitle, aname, amobile, aemail, aadd1, aadd2);
+                    AddAddress(atitle, aname, amobile, aemail, aadd1, aadd2,userN);
                     title.setText("");
                     name.setText("");
                     mobile.setText("");
@@ -64,8 +79,8 @@ public class add_address extends AppCompatActivity {
         });
     }
 
-    public void AddAddress(String t, String u, String un, String p, String a1, String a2) {
-        boolean insertData = DB.addaddress(t, u, un, p, a1, a2);
+    public void AddAddress(String t, String u, String un, String p, String a1, String a2,String UN) {
+        boolean insertData = DB.addaddress(t, u, un, p, a1, a2,UN);
 
         if (insertData) {
             toastMessage("Successful");

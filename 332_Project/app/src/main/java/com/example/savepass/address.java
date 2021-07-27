@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,10 @@ private Toolbar toolbar;
     private ListView lv_add1;
     private Cursor dt;
     FloatingActionButton f_btn3;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Boolean savelogininfo;
+    String userN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,16 @@ private Toolbar toolbar;
         lv_add1 = findViewById(R.id.lv_add);
         DB = new DBconnection(this);
 
-        Cursor dt = DB.getDBAdd();
+        sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        savelogininfo=sharedPreferences.getBoolean("saveusername",true);
+        if (savelogininfo==true)
+        {
+            userN = sharedPreferences.getString("username",null);
+        }
+
+        Cursor dt = DB.getDBAdd(userN);
         if(dt.moveToFirst()){
             Fill(dt);
         }
