@@ -33,6 +33,9 @@ public class login_page extends AppCompatActivity {
         l_done = findViewById(R.id.login_done);
         lmail = findViewById(R.id.editTextTextEmailAddress);
         lpass = findViewById(R.id.editTextTextPassword);
+
+
+
         sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
         editor=sharedPreferences.edit();
         na= findViewById(R.id.newaccount);
@@ -41,6 +44,15 @@ public class login_page extends AppCompatActivity {
         if (savelogininfo==true)
         {
             lmail.setText(sharedPreferences.getString("username",null));
+            lpass.setFocusable(true);
+            lpass.setFocusableInTouchMode(true);
+            lpass.requestFocus();
+        }
+        else
+        {
+            lmail.setFocusable(true);
+            lmail.setFocusableInTouchMode(true);
+            lmail.requestFocus();
         }
 
         na.setOnClickListener(new View.OnClickListener() {

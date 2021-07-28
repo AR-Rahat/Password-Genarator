@@ -44,16 +44,17 @@ public class singup_page extends AppCompatActivity {
         s_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
 
                 String Suser,Smail,Spass,Scpass;
                 Suser = suser.getText().toString();
                 Smail = smail.getText().toString();
                 Spass = spass.getText().toString();
                 Scpass = scpass.getText().toString();
-                if(validateUsername(Suser)) {
+
 
                     if (suser.length() != 0 && smail.length() != 0 && spass.length() != 0 && scpass.length() != 0) {
+                        if(validateUsername(Suser)==true & validatepassword(Spass)==true) {
+                            signup();
                         if (Spass.equals(Scpass)) {
                             AddData(Suser, Smail, Spass);
                             suser.setText("");
@@ -64,11 +65,12 @@ public class singup_page extends AppCompatActivity {
                         else {
                             toastMessage("Password didn't match!!!");
                         }
+                        }
                     }
                     else {
                         toastMessage("Empty fields aren't allowed!");
                     }
-                }
+
                 /*Intent l=new Intent(singup_page.this, login_page.class);
                 startActivity(l);*/
             }
@@ -91,6 +93,30 @@ public class singup_page extends AppCompatActivity {
         else
         {
             suser.setError(null);
+            //suser.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    public boolean validatepassword(String p)
+    {
+//
+        if (p.length()==0)
+        {
+            spass.setError("Field can't be empty");
+            return false;
+        }
+        else if(p.length()<=8){
+            spass.setError("Password should be minimum 8 character long");
+            spass.setFocusable(true);
+            spass.setFocusableInTouchMode(true);
+            spass.requestFocus();
+            spass.setSelection(spass.getText().length());
+            return false;
+        }
+        else
+        {
+            spass.setError(null);
             //suser.setErrorEnabled(false);
             return true;
         }

@@ -72,6 +72,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true"
         app:layout_constraintVertical_bias="0.505"
         app:passwordToggleEnabled="true">
 
@@ -80,6 +81,7 @@
             android:layout_width="234dp"
             android:layout_height="48dp"
             android:layout_marginBottom="15dp"
+            android:paddingEnd="35dp"
             android:ems="10"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +117,7 @@
             android:layout_width="234dp"
             android:layout_height="48dp"
             android:digits="abcdefghijklmnopqrstuvwxyz@1234567890._"
-            android:inputType="textFilter"
+            android:inputType="textEmailAddress|textFilter"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="246dp" />
 
