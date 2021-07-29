@@ -57,23 +57,28 @@ public class change_pass extends AppCompatActivity {
                         if(validatepassword(nmp)) {
                             if (nmp.equals(cnmp)) {
 
+                                op.setError(null);
+                                np.setError(null);
+
                                 DB.ChangePass(un, nmp);
                                 Intent i = new Intent(change_pass.this, login_page.class);
                                 i.putExtra("id", 2);
                                 logout();
                                 startActivity(i);
                             } else {
+                                np.setError("Passwords didn't match");
                                 // New password mile nai....
                             }
                         }
                     }
                     else{
+                        np.setError("Field can't be empty");
                         // oita faka tai........
                     }
                 }else {
+                    op.setError("Old password doesn't match");
                     // Old password doesn't match....
                 }
-
             }
         });
     }
