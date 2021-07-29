@@ -5,6 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +28,7 @@ public class viewpass extends AppCompatActivity {
     private Toolbar toolbar;
     DBconnection DB;
     private EditText title,url,username,pass;
-    private Button edit,save;
+    private Button edit,save,copy;
     private String pt;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -57,6 +60,7 @@ public class viewpass extends AppCompatActivity {
         username = findViewById(R.id.editTextTextPersonName5);
         pass = findViewById(R.id.editTextTextPassword);
         edit = findViewById(R.id.button4);
+        copy=(Button) findViewById(R.id.copy_btn);
         save= findViewById(R.id.save);
         save.setVisibility(View.INVISIBLE);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +90,22 @@ public class viewpass extends AppCompatActivity {
                 disableEditText(url);
                 disableEditText(username);
                 disableEditText(pass);
+            }
+        });
+        copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String t = pass.getText().toString();
+
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (!t.equals("")) {
+                    ClipData clip = ClipData.newPlainText("edit", t);
+                    clipboardManager.setPrimaryClip(clip);
+                    toastMessage("Password Copied");
+                } else {
+                    toastMessage("Password Field is Empty");
+                }
             }
         });
 

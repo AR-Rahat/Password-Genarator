@@ -54,15 +54,17 @@ public class change_pass extends AppCompatActivity {
                 boolean in = DB.isLogin(un,mp);
                 if(in){
                     if(nmp.length()!=0 && cnmp.length()!=0) {
-                        if (nmp.equals(cnmp)){
+                        if(validatepassword(nmp)) {
+                            if (nmp.equals(cnmp)) {
 
-                            DB.ChangePass(un,nmp);
-                            Intent i=new Intent(change_pass.this, login_page.class);
-                            i.putExtra("id",2);
-                            logout();
-                            startActivity(i);
-                        } else {
-                            // New password mile nai....
+                                DB.ChangePass(un, nmp);
+                                Intent i = new Intent(change_pass.this, login_page.class);
+                                i.putExtra("id", 2);
+                                logout();
+                                startActivity(i);
+                            } else {
+                                // New password mile nai....
+                            }
                         }
                     }
                     else{
@@ -74,6 +76,30 @@ public class change_pass extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean validatepassword(String p)
+    {
+//
+        if (p.length()==0)
+        {
+            np.setError("Field can't be empty");
+            return false;
+        }
+        else if(p.length()<=8){
+            np.setError("Password should be minimum 8 character long");
+           np.setFocusable(true);
+            np.setFocusableInTouchMode(true);
+            np.requestFocus();
+           np.setSelection(np.getText().length());
+            return false;
+        }
+        else
+        {
+           np.setError(null);
+            //suser.setErrorEnabled(false);
+            return true;
+        }
     }
     private void logout()
     {
