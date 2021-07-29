@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,10 @@ public class change_pass extends AppCompatActivity {
         op = (EditText) findViewById(R.id.oldpass);
         np = (EditText) findViewById(R.id.newmasterpass);
         cnp = (EditText) findViewById(R.id.conmaspass);
+
+        op.addTextChangedListener(cptw);
+        np.addTextChangedListener(cptw);
+        cnp.addTextChangedListener(cptw);
 
         sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -92,6 +98,28 @@ public class change_pass extends AppCompatActivity {
             }
         });
     }
+
+    private TextWatcher cptw = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String a,b,c;
+                a = op.getText().toString();
+                b = np.getText().toString();
+                c = cnp.getText().toString();
+
+                cp.setEnabled(!a.isEmpty() && !b.isEmpty() && !c.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     public boolean validatepassword(String p)
     {

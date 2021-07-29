@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -35,6 +37,8 @@ public class login_page extends AppCompatActivity {
         lpass = findViewById(R.id.editTextTextPassword);
 
 
+        lmail.addTextChangedListener(logintextwatcher);
+        lpass.addTextChangedListener(logintextwatcher);
 
         sharedPreferences=getSharedPreferences("loginusername",MODE_PRIVATE);
         editor=sharedPreferences.edit();
@@ -107,6 +111,25 @@ public class login_page extends AppCompatActivity {
         });
 
     }
+    private TextWatcher logintextwatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String mail = lmail.getText().toString();
+                String pass = lpass.getText().toString();
+
+                l_done.setEnabled(!mail.isEmpty() && !pass.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
     private void logout()
     {
         editor.putBoolean("saveusername",false);

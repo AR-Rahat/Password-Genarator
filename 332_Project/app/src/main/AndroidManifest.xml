@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SavePass">
-        <activity android:name=".actionbar_test"></activity>
         <activity
             android:name=".Homepage_Version2"
             android:label="@string/title_activity_homepage_version2"
@@ -25,9 +24,6 @@
         <activity android:name=".viewpass"
             android:parentActivityName=".Homepage_Version2"/>
         <activity android:name=".about_us" />
-        <activity android:name=".address" />
-        <activity android:name=".notes" />
-        <activity android:name=".password" />
         <activity android:name=".add_address"
             android:parentActivityName=".add_items"/>
         <activity android:name=".add_notes"
@@ -36,7 +32,6 @@
             android:parentActivityName=".add_items"/>
         <activity android:name=".add_items"
             android:parentActivityName=".Homepage_Version2"/>
-        <activity android:name=".Homepage" />
         <activity android:name=".Setup_done" />
         <activity android:name=".singup_page" />
         <activity android:name=".login_page"

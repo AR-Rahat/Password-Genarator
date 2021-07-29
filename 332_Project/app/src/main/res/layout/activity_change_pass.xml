@@ -96,6 +96,7 @@
         android:background="@drawable/round_btn"
         android:backgroundTint="#D11515"
         android:text="Change Password"
+        android:enabled="false"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
