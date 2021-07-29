@@ -86,7 +86,7 @@ public class change_pass extends AppCompatActivity {
             np.setError("Field can't be empty");
             return false;
         }
-        else if(p.length()<=8){
+        else if(p.length()<8){
             np.setError("Password should be minimum 8 character long");
            np.setFocusable(true);
             np.setFocusableInTouchMode(true);

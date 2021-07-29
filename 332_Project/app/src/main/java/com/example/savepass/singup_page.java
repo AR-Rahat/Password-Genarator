@@ -84,6 +84,10 @@ public class singup_page extends AppCompatActivity {
         if (u.length()==0)
         {
             suser.setError("Field can't be empty");
+            suser.setFocusable(true);
+            suser.setFocusableInTouchMode(true);
+            suser.requestFocus();
+            suser.setSelection(suser.getText().length());
             return false;
         }
         else if(dt){
@@ -104,9 +108,13 @@ public class singup_page extends AppCompatActivity {
         if (p.length()==0)
         {
             spass.setError("Field can't be empty");
+            spass.setFocusable(true);
+            spass.setFocusableInTouchMode(true);
+            spass.requestFocus();
+            spass.setSelection(spass.getText().length());
             return false;
         }
-        else if(p.length()<=8){
+        else if(p.length()<8){
             spass.setError("Password should be minimum 8 character long");
             spass.setFocusable(true);
             spass.setFocusableInTouchMode(true);
