@@ -67,16 +67,26 @@ public class change_pass extends AppCompatActivity {
                                 startActivity(i);
                             } else {
                                 np.setError("Passwords didn't match");
+                                np.setFocusable(true);
+                                np.setFocusableInTouchMode(true);
+                                np.requestFocus();
                                 // New password mile nai....
                             }
                         }
                     }
                     else{
                         np.setError("Field can't be empty");
+                        np.setFocusable(true);
+                        np.setFocusableInTouchMode(true);
+                        np.requestFocus();
                         // oita faka tai........
                     }
                 }else {
                     op.setError("Old password doesn't match");
+                    op.setFocusable(true);
+                    op.setFocusableInTouchMode(true);
+                    op.requestFocus();
+                    op.setSelection(op.getText().length());
                     // Old password doesn't match....
                 }
             }

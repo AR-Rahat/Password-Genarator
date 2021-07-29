@@ -58,6 +58,7 @@ public class login_page extends AppCompatActivity {
         na.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logout();
                 Intent in=new Intent(login_page.this, singup_page.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -105,6 +106,13 @@ public class login_page extends AppCompatActivity {
             }
         });
 
+    }
+    private void logout()
+    {
+        editor.putBoolean("saveusername",false);
+        editor.putBoolean("email",false);
+        editor.clear();
+        editor.commit();
     }
 
     private void login()

@@ -54,13 +54,12 @@ public class singup_page extends AppCompatActivity {
 
                     if (suser.length() != 0 && smail.length() != 0 && spass.length() != 0 && scpass.length() != 0) {
                         if(validateUsername(Suser)==true & validatepassword(Spass)==true) {
-                            signup();
                         if (Spass.equals(Scpass)) {
                             AddData(Suser, Smail, Spass);
-                            suser.setText("");
+                            /*suser.setText("");
                             smail.setText("");
                             spass.setText("");
-                            scpass.setText("");
+                            scpass.setText("");*/
                         }
                         else {
                             toastMessage("Password didn't match!!!");
@@ -87,7 +86,6 @@ public class singup_page extends AppCompatActivity {
             suser.setFocusable(true);
             suser.setFocusableInTouchMode(true);
             suser.requestFocus();
-            suser.setSelection(suser.getText().length());
             return false;
         }
         else if(dt){
@@ -111,7 +109,6 @@ public class singup_page extends AppCompatActivity {
             spass.setFocusable(true);
             spass.setFocusableInTouchMode(true);
             spass.requestFocus();
-            spass.setSelection(spass.getText().length());
             return false;
         }
         else if(p.length()<8){
@@ -147,14 +144,20 @@ public class singup_page extends AppCompatActivity {
 
         if (insertData) {
 //            toastMessage("Signup Successfull.");
+            signup();
             Intent l=new Intent(singup_page.this, login_page.class);
             l.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
             l.putExtra("id",1);
             startActivity(l);
+            smail.setError(null);
         } else {
-            toastMessage("Something went wrong");
+            smail.setError("Email already exists");
+            smail.setFocusable(true);
+            smail.setFocusableInTouchMode(true);
+            smail.requestFocus();
+            smail.setSelection(smail.getText().length());
         }
     }
 
