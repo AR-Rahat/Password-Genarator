@@ -27,17 +27,17 @@
         android:hint="Username"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:errorEnabled="true"
-        app:layout_constraintVertical_bias="0.633">
+        app:layout_constraintVertical_bias="0.60">
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="234dp"
+            android:layout_width="250dp"
             android:inputType="textPersonName|textCapWords"
-            android:layout_height="48dp" />
+            android:layout_height="50dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,13 +50,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612"
+        app:layout_constraintVertical_bias="0.60"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/editTextTextPassword3"
-            android:layout_width="235dp"
-            android:layout_height="47dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -69,7 +69,7 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:errorEnabled="true"
@@ -78,8 +78,8 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
-            android:layout_width="234dp"
-            android:layout_height="48dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="15dp"
             android:paddingEnd="35dp"
             android:ems="10"
@@ -108,7 +108,7 @@
         android:hint="Email"
         app:layout_constraintBottom_toBottomOf="@+id/signup_done"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.50"
         app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -116,8 +116,8 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName"
-            android:layout_width="234dp"
-            android:layout_height="48dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:digits="abcdefghijklmnopqrstuvwxyz@1234567890._"
             android:inputType="textEmailAddress|textFilter"
             tools:layout_editor_absoluteX="87dp"

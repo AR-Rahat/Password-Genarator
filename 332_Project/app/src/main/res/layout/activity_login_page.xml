@@ -48,8 +48,8 @@
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="234dp"
-            android:layout_height="48dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@1234567890._"
             android:inputType="textFilter"
             />
@@ -58,8 +58,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="234dp"
-        android:layout_height="72dp"
+        android:layout_width="250dp"
+        android:layout_height="52dp"
         android:hint="Master Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,8 +70,8 @@
 
         <EditText
             android:id="@+id/editTextTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
