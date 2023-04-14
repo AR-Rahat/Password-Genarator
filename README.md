@@ -1,2 +1,2 @@
 # Password-Genarator
-Java mini project for  CSE 332
+Android app to store your passwords in your local storage
